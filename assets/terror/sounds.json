@@ -55,9 +55,6 @@
         "name": "terror:susurro/sur4"
       },
       {
-        "name": "terror:susurro/sur5"
-      },
-      {
         "name": "terror:susurro/sur6"
       }
     ],
@@ -180,5 +177,13 @@
       }
     ],
     "subtitle": "terror.subtitulo.luna.ambiente"
+  },
+  "detras": {
+    "sounds": [
+      {
+        "name": "terror:susurro/sur5"
+      }
+    ],
+    "subtitle": "terror.subtitulo.detras"
   }
 }
