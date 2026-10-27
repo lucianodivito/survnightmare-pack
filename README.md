@@ -8,3 +8,5 @@ Pack del servidor: sonidos, ambiente e íconos. Sin texturas nuevas.
 
 Contenido:
 - `textures/gui/sprites/boss_bar/pink_*`: transparentes. La barra rosa es la de la niebla de todas las noches: así no se ve.
+- `shaders/core/lightmap.fsh`: con las barras de niebla del server (señal: `BossOverlayWorldDarkeningFactor`) la noche es más oscura y el brillo al máximo no la arregla. Ajustes: `NIGHT_SKY`, `NIGHT_AMBIENT`, `NIGHT_GAMMA`.
+- `shaders/include/fog.glsl`: con esas barras, la niebla pasa de 10-96 bloques (vanilla) a 2-30 y se aclara un poco (bruma). Ajustes: `THICK_START`, `THICK_END`, `MIST`, `MIST_MIX`.
