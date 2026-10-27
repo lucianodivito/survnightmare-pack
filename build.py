@@ -1,7 +1,9 @@
 """
 Empaqueta el resource pack en dist/SurvNightmare.zip y muestra su SHA-1.
 Con --config, además escribe el SHA-1 en las configs del plugin (resource-pack.sha1).
-Uso: python build.py [--config]
+Con --publicar, hace todo lo anterior y además lo sube a GitHub (commit + push).
+Después, en el server: /terror reload (los jugadores lo bajan al volver a entrar).
+Uso: python build.py [--config | --publicar]
 """
 import hashlib, io, os, re, sys, zipfile
 
@@ -32,7 +34,7 @@ with zipfile.ZipFile(OUT, 'w', zipfile.ZIP_DEFLATED) as z:
 sha1 = hashlib.sha1(open(OUT, 'rb').read()).hexdigest()
 print(OUT)
 print('sha1:', sha1)
-if '--config' in sys.argv:
+if '--config' in sys.argv or '--publicar' in sys.argv:
     for c in CONFIGS:
         if not os.path.exists(c):
             continue
@@ -41,3 +43,14 @@ if '--config' in sys.argv:
         if t2 != t:
             io.open(c, 'w', encoding='utf-8', newline='').write(t2)
             print('config:', c)
+
+if '--publicar' in sys.argv:
+    import subprocess
+    git = ['git', '-c', 'user.name=Deyvesta', '-c', 'user.email=deyvesta@survnightmare.local']
+    subprocess.run(['git', 'add', '-A'], cwd=ROOT, check=True)
+    if subprocess.run(['git', 'diff', '--cached', '--quiet'], cwd=ROOT).returncode != 0:
+        subprocess.run(git + ['commit', '-q', '-m', 'Pack actualizado (' + sha1[:8] + ')'], cwd=ROOT, check=True)
+        subprocess.run(['git', 'push', '-q'], cwd=ROOT, check=True)
+        print('subido a GitHub')
+    else:
+        print('sin cambios para subir')
