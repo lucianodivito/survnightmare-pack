@@ -15,6 +15,15 @@
       "chars": [
         "\ue000"
       ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/calavera.png",
+      "ascent": 10,
+      "height": 12,
+      "chars": [
+        "\ue001"
+      ]
     }
   ]
 }

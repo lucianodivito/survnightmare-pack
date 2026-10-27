@@ -19,3 +19,6 @@ Contenido:
 - `textures/environment/celestial/moon/`: luna pálida y enferma (las fases del juego, recoloreadas y con manchas).
 - `assets/minecraft/sounds.json` → `ambient.cave`: al ambiente de cueva del juego se le suman susurros, respiraciones, huesos, una criatura y un lamento (no se reemplaza nada).
 - `assets/terror/font/menu.json` + `textures/gui/menu.png`: fondo oscuro del menú /habilidades (el cofre de 6 filas recoloreado en grises oscuros parejos, sin contraste fuerte). Va en el título del cofre: espacio -8, la imagen (ascent 13, alto 222) y espacio -169 para volver a donde empieza el texto.
+- `textures/gui/container/**`: **todos los inventarios** (cofres, hornos, mesa de trabajo, yunque, aldeanos, inventario propio, creativo, etc.) en los mismos grises oscuros que el menú. Solo se cambian los grises puros; flechas, llamas y demás colores quedan.
+- `shaders/core/text.fsh`: en los inventarios, el texto gris oscuro del juego (0x404040: "Inventario", "Cofre"...) pasa a gris claro para que se lea sobre el fondo oscuro.
+- `assets/terror/font/menu.json` → `\ue001`: la calavera del título del menú, más grande (12 px).
