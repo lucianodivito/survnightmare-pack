@@ -27,7 +27,6 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | `criatura/cri5.ogg` | Burp Monster Zombie groan moan | EricsSoundschmiede | https://freesound.org/people/EricsSoundschmiede/sounds/463721/ |
 | `criatura/cri6.ogg` | Zombie Hit 1.wav | tonsil5 | https://freesound.org/people/tonsil5/sounds/555420/ |
 | `lamento/lam2.ogg` | Scary_Breath.wav | titsher | https://freesound.org/people/titsher/sounds/204963/ |
-| `lamento/lam3.ogg` | screaming no.mp3 | aebttny | https://freesound.org/people/aebttny/sounds/569082/ |
 | `lamento/lam5.ogg` | Ghostly Moan.mp3 | SnowFightStudios | https://freesound.org/people/SnowFightStudios/sounds/643741/ |
 | `risa/ris2.ogg` | Child_Wispher_1.wav | DRFX | https://freesound.org/people/DRFX/sounds/350763/ |
 | `risa/ris3.ogg` | scary laughing sound effect 2 Rea.wav | reasanka | https://freesound.org/people/reasanka/sounds/347912/ |
