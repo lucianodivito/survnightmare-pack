@@ -1,0 +1,187 @@
+{
+  "susto": {
+    "sounds": [
+      {
+        "name": "terror:susto/sus1"
+      },
+      {
+        "name": "terror:susto/sus3"
+      },
+      {
+        "name": "terror:susto/sus5"
+      },
+      {
+        "name": "terror:susto/sus6"
+      }
+    ],
+    "subtitle": "terror.subtitulo.susto"
+  },
+  "sabueso.aullido": {
+    "sounds": [
+      {
+        "name": "terror:aullido/aul1",
+        "attenuation_distance": 64
+      },
+      {
+        "name": "terror:aullido/aul3",
+        "attenuation_distance": 64
+      }
+    ],
+    "subtitle": "terror.subtitulo.sabueso.aullido"
+  },
+  "sabueso.ladrido": {
+    "sounds": [
+      {
+        "name": "terror:aullido/aul4"
+      },
+      {
+        "name": "terror:aullido/aul6"
+      }
+    ],
+    "subtitle": "terror.subtitulo.sabueso.ladrido"
+  },
+  "susurro": {
+    "sounds": [
+      {
+        "name": "terror:susurro/sur1"
+      },
+      {
+        "name": "terror:susurro/sur2"
+      },
+      {
+        "name": "terror:susurro/sur3"
+      },
+      {
+        "name": "terror:susurro/sur4"
+      },
+      {
+        "name": "terror:susurro/sur5"
+      },
+      {
+        "name": "terror:susurro/sur6"
+      }
+    ],
+    "subtitle": "terror.subtitulo.susurro"
+  },
+  "respiracion": {
+    "sounds": [
+      {
+        "name": "terror:respiracion/res1"
+      },
+      {
+        "name": "terror:respiracion/res3"
+      },
+      {
+        "name": "terror:respiracion/res5"
+      }
+    ],
+    "subtitle": "terror.subtitulo.respiracion"
+  },
+  "criatura": {
+    "sounds": [
+      {
+        "name": "terror:criatura/cri2"
+      },
+      {
+        "name": "terror:criatura/cri3"
+      },
+      {
+        "name": "terror:criatura/cri4"
+      },
+      {
+        "name": "terror:criatura/cri5"
+      },
+      {
+        "name": "terror:criatura/cri6"
+      }
+    ],
+    "subtitle": "terror.subtitulo.criatura"
+  },
+  "lamento": {
+    "sounds": [
+      {
+        "name": "terror:lamento/lam2"
+      },
+      {
+        "name": "terror:lamento/lam3"
+      },
+      {
+        "name": "terror:lamento/lam5"
+      }
+    ],
+    "subtitle": "terror.subtitulo.lamento"
+  },
+  "risa": {
+    "sounds": [
+      {
+        "name": "terror:risa/ris2"
+      },
+      {
+        "name": "terror:risa/ris3"
+      },
+      {
+        "name": "terror:risa/ris4"
+      }
+    ],
+    "subtitle": "terror.subtitulo.risa"
+  },
+  "huesos": {
+    "sounds": [
+      {
+        "name": "terror:huesos/hue1"
+      },
+      {
+        "name": "terror:huesos/hue2"
+      },
+      {
+        "name": "terror:huesos/hue4"
+      },
+      {
+        "name": "terror:huesos/hue6"
+      }
+    ],
+    "subtitle": "terror.subtitulo.huesos"
+  },
+  "golpe": {
+    "sounds": [
+      {
+        "name": "terror:huesos/hue3"
+      },
+      {
+        "name": "terror:huesos/hue5"
+      },
+      {
+        "name": "terror:luna/lun4"
+      }
+    ],
+    "subtitle": "terror.subtitulo.golpe"
+  },
+  "luna.inicio": {
+    "sounds": [
+      {
+        "name": "terror:luna/lun1",
+        "attenuation_distance": 48
+      },
+      {
+        "name": "terror:luna/lun2",
+        "attenuation_distance": 48
+      },
+      {
+        "name": "terror:luna/lun5",
+        "attenuation_distance": 48
+      }
+    ],
+    "subtitle": "terror.subtitulo.luna.inicio"
+  },
+  "luna.ambiente": {
+    "sounds": [
+      {
+        "name": "terror:luna/lun3"
+      },
+      {
+        "name": "terror:luna/lun6"
+      }
+    ],
+    "subtitle": "terror.subtitulo.luna.ambiente"
+  }
+}

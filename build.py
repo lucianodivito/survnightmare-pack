@@ -10,7 +10,7 @@ import hashlib, io, os, re, sys, zipfile
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'dist', 'SurvNightmare.zip')
 CONFIGS = [r'D:\Servers\SurvivalHorror\plugins\Terror\config.yml', r'D:\Servers\_prueba\plugins\Terror\config.yml']
-SKIP = {'dist', '.git', 'build.py', 'README.md', '.gitignore', 'fuentes'}
+SKIP = {'dist', '.git', 'build.py', 'README.md', 'CREDITOS.md', '.gitignore', 'fuentes'}
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with zipfile.ZipFile(OUT, 'w', zipfile.ZIP_DEFLATED) as z:
