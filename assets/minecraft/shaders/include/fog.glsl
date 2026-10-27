@@ -39,11 +39,24 @@ bool terror_boss_fog() {
         && abs(FogCloudsEnd - FogEnvironmentalEnd) < 0.01;
 }
 
+// Oscuridad: inicio = 0.75 x fin. Ceguera: inicio = 0.25 x fin. En los dos, el fin del cielo y el de las nubes
+// son iguales entre si.
+bool terror_effect_fog() {
+    if (FogEnvironmentalEnd <= 0.0 || abs(FogSkyEnd - FogCloudsEnd) > 0.01) return false;
+    return abs(FogEnvironmentalStart - 0.75 * FogEnvironmentalEnd) < 0.01
+        || abs(FogEnvironmentalStart - 0.25 * FogEnvironmentalEnd) < 0.01;
+}
+
 vec4 apply_fog(vec4 inColor, float sphericalVertexDistance, float cylindricalVertexDistance, float environmentalStart, float environmantalEnd, float renderDistanceStart, float renderDistanceEnd, vec4 fogColor) {
     if (terror_boss_fog()) {
         environmentalStart = THICK_START;
         environmantalEnd = THICK_END;
         fogColor = vec4(mix(fogColor.rgb, MIST, MIST_MIX), fogColor.a);
+    } else if (terror_effect_fog()) {
+        // Con Oscuridad o Ceguera el juego deja de lado la niebla de la barra y usa la del efecto, que al empezar
+        // y al irse llega lejisimo: sin esto, la noche se "abre" de golpe. Nunca mas lejos que la niebla espesa.
+        environmentalStart = min(environmentalStart, THICK_START);
+        environmantalEnd = min(environmantalEnd, THICK_END);
     }
     float fogValue = total_fog_value(sphericalVertexDistance, cylindricalVertexDistance, environmentalStart, environmantalEnd, renderDistanceStart, renderDistanceEnd);
     return vec4(mix(inColor.rgb, fogColor.rgb, fogValue * fogColor.a), inColor.a);
