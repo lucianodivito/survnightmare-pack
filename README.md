@@ -13,7 +13,6 @@ Contenido:
 - `assets/terror/sounds.json` y `assets/terror/sounds/`: sonidos propios (ogg mono). Eventos `terror:susto`, `sabueso.aullido`, `sabueso.ladrido`, `susurro`, `respiracion`, `criatura`, `lamento`, `risa`, `huesos`, `golpe`, `luna.inicio`, `luna.ambiente`. En el plugin: `world/Sounds`. De dónde salió cada uno: `CREDITOS.md`.
 - `assets/minecraft/sounds.json`: **sin música**. Las 32 músicas del juego (`music.*`, menos los discos) suenan como un segundo de silencio (`terror:silencio`). El terror se apoya en el silencio y en los sonidos de ambiente.
 - `assets/minecraft/font/default.json` + `assets/terror/textures/font/`: íconos en lugar de símbolos, en todo el juego (chat, scoreboard, menús): ✦ Esencia = llama de alma, ⛃ dinero = pepita de oro, ♛ habilidad estrella = corona (pixel art propio, en grises para que la tiña el color del texto), ☠ = alma que grita. Reusan texturas del juego.
-- `textures/misc/vignette.png`: viñeta con venas (generada; la usa el juego para la viñeta normal y para el borde rojo de la viñeta de miedo).
 - `textures/gui/sprites/boss_bar/red_*`: barra roja propia (Luna de Sangre): fondo casi negro, sangre con gotas. Ojo: las incursiones de aldeanos también usan la barra roja.
 - `shaders/core/stars.fsh`: cielo sin estrellas.
 - `textures/environment/celestial/moon/`: luna pálida y enferma (las fases del juego, recoloreadas y con manchas).
