@@ -286,5 +286,38 @@
         "stream": true
       }
     ]
+  },
+  "ambient.cave": {
+    "replace": false,
+    "sounds": [
+      {
+        "name": "terror:susurro/sur1",
+        "volume": 0.6
+      },
+      {
+        "name": "terror:susurro/sur4",
+        "volume": 0.6
+      },
+      {
+        "name": "terror:respiracion/res3",
+        "volume": 0.6
+      },
+      {
+        "name": "terror:respiracion/res5",
+        "volume": 0.6
+      },
+      {
+        "name": "terror:huesos/hue1",
+        "volume": 0.6
+      },
+      {
+        "name": "terror:criatura/cri4",
+        "volume": 0.6
+      },
+      {
+        "name": "terror:lamento/lam5",
+        "volume": 0.6
+      }
+    ]
   }
 }
