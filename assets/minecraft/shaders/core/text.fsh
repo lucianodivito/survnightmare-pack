@@ -39,7 +39,8 @@ void main() {
 #elif defined(IS_GUI)
     // SURV. NIGHTMARE: los titulos de los inventarios vienen en gris oscuro (0x404040); con los fondos oscuros del
     // pack no se leerian, asi que ese gris exacto pasa a gris claro. Los demas colores quedan igual.
-    if (all(lessThan(abs(vertexColor.rgb - vec3(64.0 / 255.0)), vec3(0.004)))) {
+    // Margen muy chico: la sombra del texto blanco es 63/255, un punto al lado; si la tomara, el blanco se ve borroso
+    if (all(lessThan(abs(vertexColor.rgb - vec3(64.0 / 255.0)), vec3(0.0015)))) {
         color = texColor * vec4(vec3(0.80, 0.80, 0.82), vertexColor.a) * ColorModulator;
     }
     fragColor = color;

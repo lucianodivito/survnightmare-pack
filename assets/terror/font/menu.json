@@ -19,8 +19,8 @@
     {
       "type": "bitmap",
       "file": "terror:font/calavera.png",
-      "ascent": 10,
-      "height": 12,
+      "ascent": 13,
+      "height": 16,
       "chars": [
         "\ue001"
       ]
