@@ -33,12 +33,12 @@ float parabolicMixFactor(float level) {
 }
 
 // SURV. NIGHTMARE: las barras de jefe del server (niebla de todas las noches, banco de niebla, Luna de Sangre)
-// oscurecen el mundo. Usamos esa señal (BossOverlayWorldDarkeningFactor) para que la noche sea oscura de verdad:
-// casi nada de luz del cielo ni de luz ambiente, y sin que el brillo al máximo lo arregle. Las antorchas y demás
-// luces de bloque siguen alumbrando igual. Sin esas barras (de día, en cuevas sin barra), todo queda como vanilla.
-const float NIGHT_SKY = 0.25;        // cuánto queda de la luz del cielo (luna)
-const float NIGHT_AMBIENT = 0.15;    // cuánto queda de la luz ambiente mínima
-const float NIGHT_GAMMA = 0.10;      // cuánto queda del efecto del brillo de las opciones
+// oscurecen el mundo. Usamos esa senal (BossOverlayWorldDarkeningFactor) para que la noche sea oscura de verdad:
+// casi nada de luz del cielo ni de luz ambiente, y sin que el brillo al maximo lo arregle. Las antorchas y demas
+// luces de bloque siguen alumbrando igual. Sin esas barras (de dia, en cuevas sin barra), todo queda como vanilla.
+const float NIGHT_SKY = 0.25;        // cuanto queda de la luz del cielo (luna)
+const float NIGHT_AMBIENT = 0.15;    // cuanto queda de la luz ambiente minima
+const float NIGHT_GAMMA = 0.10;      // cuanto queda del efecto del brillo de las opciones
 
 void main() {
     float boss = lightmapInfo.BossOverlayWorldDarkeningFactor;
