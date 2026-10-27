@@ -18,3 +18,4 @@ Contenido:
 - `shaders/core/stars.fsh`: cielo sin estrellas.
 - `textures/environment/celestial/moon/`: luna pálida y enferma (las fases del juego, recoloreadas y con manchas).
 - `assets/minecraft/sounds.json` → `ambient.cave`: al ambiente de cueva del juego se le suman susurros, respiraciones, huesos, una criatura y un lamento (no se reemplaza nada).
+- `assets/terror/font/menu.json` + `textures/gui/menu.png`: fondo oscuro del menú /habilidades (el cofre de 6 filas recoloreado: casi negro, borde rojo). Va en el título del cofre: espacio -8, la imagen (ascent 13, alto 222) y espacio -169 para volver a donde empieza el texto.
