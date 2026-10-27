@@ -2,7 +2,7 @@
 Empaqueta el resource pack en dist/SurvNightmare.zip y muestra su SHA-1.
 Con --config, además escribe el SHA-1 en las configs del plugin (resource-pack.sha1).
 Con --publicar, hace todo lo anterior y además lo sube a GitHub (commit + push).
-Después, en el server: /terror reload (los jugadores lo bajan al volver a entrar).
+Después, en el server: /terror reload (los jugadores lo bajan al volver a entrar). La URL queda fija al commit.
 Uso: python build.py [--config | --publicar]
 """
 import hashlib, io, os, re, sys, zipfile
@@ -54,3 +54,15 @@ if '--publicar' in sys.argv:
         print('subido a GitHub')
     else:
         print('sin cambios para subir')
+    # La URL apunta al commit exacto (no a "main"): GitHub cachea "main" unos minutos y el cliente bajaría el pack
+    # anterior, con otra firma, y no le cargaría. Un commit nunca cambia.
+    commit = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, check=True, capture_output=True, text=True).stdout.strip()
+    url = 'https://raw.githubusercontent.com/lucianodivito/survnightmare-pack/' + commit + '/dist/SurvNightmare.zip'
+    for c in CONFIGS:
+        if not os.path.exists(c):
+            continue
+        t = io.open(c, encoding='utf-8').read()
+        t2 = re.sub(r'(?m)^(  url: )"[^"]*"', r'\g<1>"' + url + '"', t)
+        if t2 != t:
+            io.open(c, 'w', encoding='utf-8', newline='').write(t2)
+    print('url:', url)
