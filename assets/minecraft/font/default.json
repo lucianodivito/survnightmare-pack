@@ -1,0 +1,40 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "terror:font/esencia.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\u2726"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/moneda.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\u26c3"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/corona.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\u265b"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/calavera.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": [
+        "\u2620"
+      ]
+    }
+  ]
+}
