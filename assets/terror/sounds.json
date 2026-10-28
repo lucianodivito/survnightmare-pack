@@ -382,6 +382,52 @@
     ],
     "subtitle": "terror.subtitulo.caminante.salto"
   },
+  "reflejo.pasos": {
+    "sounds": [
+      {
+        "name": "terror:jefes/reflejo/pasos1"
+      },
+      {
+        "name": "terror:jefes/reflejo/pasos2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.reflejo.pasos"
+  },
+  "reflejo.vidrio": {
+    "sounds": [
+      {
+        "name": "terror:jefes/reflejo/vidrio1"
+      },
+      {
+        "name": "terror:jefes/reflejo/vidrio2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.reflejo.vidrio"
+  },
+  "reflejo.golpe": {
+    "sounds": [
+      {
+        "name": "terror:jefes/reflejo/golpe1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.reflejo.golpe"
+  },
+  "reflejo.cae": {
+    "sounds": [
+      {
+        "name": "terror:jefes/reflejo/cae1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.reflejo.cae"
+  },
+  "reflejo.muerte": {
+    "sounds": [
+      {
+        "name": "terror:jefes/reflejo/muerte1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.reflejo.muerte"
+  },
   "caminante.muerte": {
     "sounds": [
       {

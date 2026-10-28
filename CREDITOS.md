@@ -67,3 +67,10 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | `jefes/espanta/muerte1.ogg` | flock of crows.wav | Fenodyrie | https://freesound.org/people/Fenodyrie/sounds/565911/ |
 | `jefes/caminante/apagon1.ogg` | Fluorescent Lightbulb Break.wav | sandb1ns | https://freesound.org/people/sandb1ns/sounds/558969/ |
 | `jefes/caminante/apagon2.ogg` | light bulb glass burst drop on floor1.wav | kyles | https://freesound.org/people/kyles/sounds/637658/ |
+| `jefes/reflejo/pasos1.ogg` | 120807 Footsteps up stone stairs, slow, boots, echo, Aarhus.wav | TRP | https://freesound.org/people/TRP/sounds/616615/ |
+| `jefes/reflejo/pasos2.ogg` | 120807 Footsteps up stone stairs, slow, boots, echo, Aarhus.wav | TRP | https://freesound.org/people/TRP/sounds/616615/ |
+| `jefes/reflejo/vidrio1.ogg` | glass - singing wine glass - full 01.wav | Anthousai | https://freesound.org/people/Anthousai/sounds/447779/ |
+| `jefes/reflejo/vidrio2.ogg` | Wine Glass Ring.wav | cloe.king | https://freesound.org/people/cloe.king/sounds/444166/ |
+| `jefes/reflejo/golpe1.ogg` | glass-shattering-hit_01.ogg | C_Rogers | https://freesound.org/people/C_Rogers/sounds/203368/ |
+| `jefes/reflejo/cae1.ogg` | glass - singing wine glass - full 01.wav | Anthousai | https://freesound.org/people/Anthousai/sounds/447779/ |
+| `jefes/reflejo/muerte1.ogg` | Slow Motion Glass Shatter | bevibeldesign | https://freesound.org/people/bevibeldesign/sounds/349905/ |

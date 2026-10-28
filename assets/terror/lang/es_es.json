@@ -32,5 +32,10 @@
   "terror.subtitulo.caminante.llega": "Algo llegó",
   "terror.subtitulo.caminante.golpe": "Un golpe",
   "terror.subtitulo.caminante.salto": "Algo desaparece",
-  "terror.subtitulo.caminante.muerte": "Algo se derrumba"
+  "terror.subtitulo.caminante.muerte": "Algo se derrumba",
+  "terror.subtitulo.reflejo.pasos": "Pasos en la escalera, más arriba",
+  "terror.subtitulo.reflejo.vidrio": "Un cristal vibra",
+  "terror.subtitulo.reflejo.golpe": "Un golpe que cruje",
+  "terror.subtitulo.reflejo.cae": "Algo se ríe de tu caída",
+  "terror.subtitulo.reflejo.muerte": "Un espejo se rompe"
 }

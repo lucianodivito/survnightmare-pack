@@ -34,6 +34,11 @@ SOURCES = {
     788990: 'https://freesound.org/people/Robhog/sounds/788990/',                # SWOOSH Sound Effect
     558969: 'https://freesound.org/people/sandb1ns/sounds/558969/',              # Fluorescent Lightbulb Break
     637658: 'https://freesound.org/people/kyles/sounds/637658/',                 # light bulb glass burst
+    616615: 'https://freesound.org/people/TRP/sounds/616615/',                   # Footsteps up stone stairs, slow, echo
+    447779: 'https://freesound.org/people/Anthousai/sounds/447779/',             # singing wine glass - full 01
+    444166: 'https://freesound.org/people/cloe.king/sounds/444166/',             # Wine Glass Ring
+    203368: 'https://freesound.org/people/C_Rogers/sounds/203368/',              # glass-shattering-hit_01
+    349905: 'https://freesound.org/people/bevibeldesign/sounds/349905/',         # Slow Motion Glass Shatter
 }
 
 # Cada sonido: (evento, archivo, id de fuente, desde, duración, filtros de ffmpeg)
@@ -77,6 +82,14 @@ CLIPS = [
     ('caminante.llega', 'llega1', 'llega', 0.0, 2.6, 'lowpass=f=180,lowpass=f=180,aecho=0.8:0.85:300:0.4'),
     ('caminante.golpe', 'golpe1', 'tajo', 0.0, 0.6, 'lowpass=f=260,lowpass=f=260,volume=2'),
     ('caminante.salto', 'salto1', 'salto', 0.0, 0.7, 'highpass=f=120,lowpass=f=900'),
+    # El que baja (tu reflejo)
+    ('reflejo.pasos', 'pasos1', 616615, 0.0, 4.0, 'afade=t=in:d=0.3,afade=t=out:st=3.4:d=0.6'),
+    ('reflejo.pasos', 'pasos2', 616615, 4.0, 4.0, GRAVE.format(f=0.92) + ',afade=t=in:d=0.3,afade=t=out:st=3.4:d=0.6'),
+    ('reflejo.vidrio', 'vidrio1', 447779, 0.5, 3.5, 'afade=t=in:d=0.6,afade=t=out:st=2.8:d=0.7'),
+    ('reflejo.vidrio', 'vidrio2', 444166, 0.0, 3.0, GRAVE.format(f=0.8) + ',aecho=0.8:0.8:120:0.4,afade=t=out:st=2.3:d=0.7'),
+    ('reflejo.golpe', 'golpe1', 203368, 0.0, 0.8, GRAVE.format(f=0.6) + ',lowpass=f=2500'),
+    ('reflejo.cae', 'cae1', 447779, 0.5, 3.0, 'areverse,' + GRAVE.format(f=0.7) + ',aecho=0.8:0.85:180:0.5'),
+    ('reflejo.muerte', 'muerte1', 349905, 0.0, 5.0, 'aecho=0.8:0.8:150:0.4,afade=t=out:st=3.5:d=1.5'),
     ('caminante.muerte', 'muerte1', 'caida', 0.0, 5.5, 'lowpass=f=220,lowpass=f=220,aecho=0.8:0.85:250:0.5,afade=t=out:st=3.5:d=2'),
 ]
 
