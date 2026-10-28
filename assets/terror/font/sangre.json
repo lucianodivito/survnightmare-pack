@@ -9,13 +9,157 @@
     {
       "type": "bitmap",
       "file": "terror:font/sangre.png",
-      "height": 14,
+      "height": 16,
       "ascent": 9,
       "chars": [
         "ABCDEFGHIJKLMNOP",
         "QRSTUVWXYZ\u00d1\u00c1\u00c9\u00cd\u00d3\u00da",
         "0123456789.,!?\u00a1\u00bf",
         "-'\":;()+/<>_#*%&"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha0.png",
+      "height": 46,
+      "ascent": 11,
+      "chars": [
+        "\ue100"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha0.png",
+      "height": 46,
+      "ascent": 21,
+      "chars": [
+        "\ue101"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha0.png",
+      "height": 46,
+      "ascent": 31,
+      "chars": [
+        "\ue102"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha0.png",
+      "height": 46,
+      "ascent": 41,
+      "chars": [
+        "\ue103"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha1.png",
+      "height": 46,
+      "ascent": 11,
+      "chars": [
+        "\ue104"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha1.png",
+      "height": 46,
+      "ascent": 21,
+      "chars": [
+        "\ue105"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha1.png",
+      "height": 46,
+      "ascent": 31,
+      "chars": [
+        "\ue106"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha1.png",
+      "height": 46,
+      "ascent": 41,
+      "chars": [
+        "\ue107"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha2.png",
+      "height": 46,
+      "ascent": 11,
+      "chars": [
+        "\ue108"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha2.png",
+      "height": 46,
+      "ascent": 21,
+      "chars": [
+        "\ue109"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha2.png",
+      "height": 46,
+      "ascent": 31,
+      "chars": [
+        "\ue10a"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha2.png",
+      "height": 46,
+      "ascent": 41,
+      "chars": [
+        "\ue10b"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha3.png",
+      "height": 46,
+      "ascent": 11,
+      "chars": [
+        "\ue10c"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha3.png",
+      "height": 46,
+      "ascent": 21,
+      "chars": [
+        "\ue10d"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha3.png",
+      "height": 46,
+      "ascent": 31,
+      "chars": [
+        "\ue10e"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre_mancha3.png",
+      "height": 46,
+      "ascent": 41,
+      "chars": [
+        "\ue10f"
       ]
     }
   ]
