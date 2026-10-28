@@ -254,14 +254,6 @@
     ],
     "subtitle": "terror.subtitulo.chico.cajita"
   },
-  "chico.corre": {
-    "sounds": [
-      {
-        "name": "terror:jefes/chico/corre1"
-      }
-    ],
-    "subtitle": "terror.subtitulo.chico.corre"
-  },
   "chico.risa": {
     "sounds": [
       {

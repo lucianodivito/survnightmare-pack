@@ -50,7 +50,6 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | `jefes/inquilino/parpadeo1.ogg` | Lights Flicker On.wav | mmaruska | https://freesound.org/people/mmaruska/sounds/232447/ |
 | `jefes/chico/cajita1.ogg` | creepy music box.wav | Modification1089 | https://freesound.org/people/Modification1089/sounds/274379/ |
 | `jefes/chico/cajita2.ogg` | creepy music box.wav | Modification1089 | https://freesound.org/people/Modification1089/sounds/274379/ |
-| `jefes/chico/corre1.ogg` | barefoot hall running | Splushionsindasky | https://freesound.org/people/Splushionsindasky/sounds/397333/ |
 | `jefes/chico/risa1.ogg` | Child Laughing sound Effects-11 | SignatureSoundsOrg | https://freesound.org/people/SignatureSoundsOrg/sounds/872110/ |
 | `jefes/chico/risa2.ogg` | Child Laughing sound Effects-11 | SignatureSoundsOrg | https://freesound.org/people/SignatureSoundsOrg/sounds/872110/ |
 | `jefes/chico/risa3.ogg` | Child Laughing sound Effects-11 | SignatureSoundsOrg | https://freesound.org/people/SignatureSoundsOrg/sounds/872110/ |

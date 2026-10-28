@@ -21,7 +21,6 @@ SOURCES = {
     232447: 'https://freesound.org/people/mmaruska/sounds/232447/',              # Lights Flicker On
     157564: 'https://freesound.org/people/husky70/sounds/157564/',               # Grumpy Old Man
     274379: 'https://freesound.org/people/Modification1089/sounds/274379/',      # creepy music box
-    397333: 'https://freesound.org/people/Splushionsindasky/sounds/397333/',     # barefoot hall running
     667199: 'https://freesound.org/people/MBPL/sounds/667199/',                  # Crying baby 1
     582341: 'https://freesound.org/people/Mellun/sounds/582341/',                # baby crying in a dark corridor
     872110: 'https://freesound.org/people/SignatureSoundsOrg/sounds/872110/',    # Child Laughing sound Effects-11
@@ -45,7 +44,6 @@ CLIPS = [
     # El Chico
     ('chico.cajita', 'cajita1', 274379, 2.0, 9.0, 'afade=t=in:d=0.5,afade=t=out:st=8:d=1'),
     ('chico.cajita', 'cajita2', 274379, 20.0, 9.0, 'afade=t=in:d=0.5,afade=t=out:st=8:d=1'),
-    ('chico.corre', 'corre1', 397333, 0.0, 3.0, GRAVE.format(f=1.15)),
     ('chico.risa', 'risa1', 872110, 0.0, 2.0, 'aecho=0.8:0.7:90:0.4'),
     ('chico.risa', 'risa2', 872110, 0.0, 2.0, GRAVE.format(f=0.85) + ',atempo=0.9,aecho=0.8:0.8:140:0.45'),
     ('chico.risa', 'risa3', 872110, 0.0, 2.0, 'areverse,aecho=0.8:0.7:110:0.4'),
