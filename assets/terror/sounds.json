@@ -262,6 +262,20 @@
     ],
     "subtitle": "terror.subtitulo.chico.corre"
   },
+  "chico.risa": {
+    "sounds": [
+      {
+        "name": "terror:jefes/chico/risa1"
+      },
+      {
+        "name": "terror:jefes/chico/risa2"
+      },
+      {
+        "name": "terror:jefes/chico/risa3"
+      }
+    ],
+    "subtitle": "terror.subtitulo.chico.risa"
+  },
   "chico.llanto": {
     "sounds": [
       {
@@ -280,19 +294,5 @@
       }
     ],
     "subtitle": "terror.subtitulo.chico.muerte"
-  },
-  "chico.risa": {
-    "sounds": [
-      {
-        "name": "terror:jefes/chico/risa1"
-      },
-      {
-        "name": "terror:jefes/chico/risa2"
-      },
-      {
-        "name": "terror:jefes/chico/risa3"
-      }
-    ],
-    "subtitle": "terror.subtitulo.chico.risa"
   }
 }

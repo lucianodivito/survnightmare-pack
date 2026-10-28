@@ -5,7 +5,7 @@ Baja de Freesound (solo si la página dice CC0) la vista previa de cada sonido, 
 los eventos en assets/terror/sounds.json y los créditos en CREDITOS.md.
 Uso: python fuentes/jefes_sonidos.py   (necesita imageio-ffmpeg: python -m pip install --user imageio-ffmpeg)
 """
-import json, os, re, subprocess, urllib.request
+import json, os, re, shutil, subprocess, urllib.request
 import imageio_ffmpeg
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,10 +36,12 @@ CLIPS = [
     ('inquilino.paso', 'paso1', 502504, 0.0, 1.0, GRAVE.format(f=0.8)),
     ('inquilino.paso', 'paso2', 506660, 0.0, 1.0, GRAVE.format(f=0.75)),
     ('inquilino.parpadeo', 'parpadeo1', 232447, 0.0, 2.2, 'volume=1.3'),
-    ('inquilino.voz', 'voz1', 157564, 0.0, 4.0, GRAVE.format(f=0.7) + ',aecho=0.8:0.7:60:0.4'),
-    ('inquilino.voz', 'voz2', 157564, 4.0, 4.0, GRAVE.format(f=0.65) + ',aecho=0.8:0.7:80:0.4'),
-    ('inquilino.golpe', 'golpe1', 346267, 6.0, 1.2, GRAVE.format(f=0.5) + ',volume=2'),
-    ('inquilino.muerte', 'muerte1', 157564, 0.0, 6.0, 'areverse,' + GRAVE.format(f=0.55) + ',aecho=0.8:0.8:120:0.5,afade=t=out:st=4:d=2'),
+    # Hechos acá (sin grabación): el tarareo grave, el golpe sordo y la muerte. Con la voz grabada y procesada, el
+    # murmullo sonaba a perro gruñendo; y el golpe, a puerta.
+    ('inquilino.voz', 'voz1', 'tarareo1', 0.0, 3.6, 'lowpass=f=700,aecho=0.8:0.75:90:0.45,afade=t=in:d=0.3,afade=t=out:st=3:d=0.6'),
+    ('inquilino.voz', 'voz2', 'tarareo2', 0.0, 3.6, 'lowpass=f=650,aecho=0.8:0.75:120:0.45,afade=t=in:d=0.3,afade=t=out:st=3:d=0.6'),
+    ('inquilino.golpe', 'golpe1', 'golpe', 0.0, 0.7, 'lowpass=f=380,volume=2'),
+    ('inquilino.muerte', 'muerte1', 'hundirse', 0.0, 6.0, 'lowpass=f=600,aecho=0.8:0.85:160:0.55,afade=t=out:st=3.5:d=2.5'),
     # El Chico
     ('chico.cajita', 'cajita1', 274379, 2.0, 9.0, 'afade=t=in:d=0.5,afade=t=out:st=8:d=1'),
     ('chico.cajita', 'cajita2', 274379, 20.0, 9.0, 'afade=t=in:d=0.5,afade=t=out:st=8:d=1'),
@@ -51,6 +53,24 @@ CLIPS = [
     ('chico.llanto', 'llanto2', 582341, 1.0, 2.0, GRAVE.format(f=1.1) + ',aecho=0.8:0.6:50:0.3,afade=t=out:st=1.5:d=0.5'),
     ('chico.muerte', 'muerte1', 274379, 30.0, 8.0, GRAVE.format(f=0.6) + ',atempo=0.8,aecho=0.8:0.8:150:0.5,afade=t=out:st=5:d=4'),
 ]
+
+
+# Los generados: una fórmula de onda (ffmpeg aevalsrc). Un tarareo con la voz cerrada (una nota y sus armónicos, con
+# un vibrato leve) que baja de nota; un golpe sordo (un bombo grave y un poco de ruido que se apaga enseguida); y un
+# tarareo que se hunde hasta perderse.
+def hum(notes, seconds):
+    step = seconds / len(notes)
+    f = '+'.join(f'{n}*between(t,{i * step},{(i + 1) * step})' for i, n in enumerate(notes))
+    return (f"aevalsrc='(sin(2*PI*({f})*t*(1+0.006*sin(2*PI*5*t)))+0.45*sin(4*PI*({f})*t)+0.2*sin(6*PI*({f})*t))"
+            f"*0.35*(0.7+0.3*sin(2*PI*0.8*t))':s=44100:d={seconds}")
+
+
+SYNTH = {
+    'tarareo1': hum([110, 98, 92.5], 3.6),
+    'tarareo2': hum([98, 110, 82.4], 3.6),
+    'golpe': "aevalsrc='(0.9*sin(2*PI*52*t)+0.5*(random(0)*2-1)*exp(-t*40))*exp(-t*8)':s=44100:d=0.7",
+    'hundirse': "aevalsrc='(sin(2*PI*(110*t-9*t*t))+0.4*sin(4*PI*(110*t-9*t*t)))*0.35':s=44100:d=6",
+}
 
 
 def page(sound_id):
@@ -76,33 +96,38 @@ def fetch(sound_id):
 def main():
     sounds_json = os.path.join(ROOT, 'assets', 'terror', 'sounds.json')
     events = json.load(open(sounds_json, encoding='utf-8'))
+    bosses = {e.split('.')[0] for e, *_ in CLIPS}
+    # Los de los jefes se arman de cero cada vez (si se cambia uno, no queda el viejo colgado)
+    for key in [k for k in events if k.split('.')[0] in bosses]:
+        del events[key]
+    out_dir = os.path.join(ROOT, 'assets', 'terror', 'sounds', 'jefes')
+    shutil.rmtree(out_dir, ignore_errors=True)
     credits = []
     info = {}
-    out_dir = os.path.join(ROOT, 'assets', 'terror', 'sounds', 'jefes')
-    os.makedirs(out_dir, exist_ok=True)
     for event, name, sid, start, length, filters in CLIPS:
-        if sid not in info:
-            info[sid] = fetch(sid)
-        src, title, author, url = info[sid]
         boss = event.split('.')[0]
         os.makedirs(os.path.join(out_dir, boss), exist_ok=True)
         out = os.path.join(out_dir, boss, name + '.ogg')
         filters += ',loudnorm=I=-20:TP=-1.5'   # todos con un volumen parejo
-        cmd = [FFMPEG, '-y', '-loglevel', 'error', '-ss', str(start), '-t', str(length), '-i', src,
+        if sid in SYNTH:
+            source = ['-f', 'lavfi', '-i', SYNTH[sid]]
+        else:
+            if sid not in info:
+                info[sid] = fetch(sid)
+            src, title, author, url = info[sid]
+            source = ['-ss', str(start), '-t', str(length), '-i', src]
+            credits.append(f'| `jefes/{boss}/{name}.ogg` | {title} | {author} | {url} |')
+        cmd = [FFMPEG, '-y', '-loglevel', 'error', *source,
                '-af', filters, '-ac', '1', '-ar', '44100', '-c:a', 'libvorbis', '-q:a', '5', out]
         subprocess.run(cmd, check=True)
         entry = events.setdefault(event, {'sounds': [], 'subtitle': 'terror.subtitulo.' + event})
-        ref = f'terror:jefes/{boss}/{name}'
-        if all(s['name'] != ref for s in entry['sounds']):
-            entry['sounds'].append({'name': ref})
-        credits.append(f'| `jefes/{boss}/{name}.ogg` | {title} | {author} | {url} |')
+        entry['sounds'].append({'name': f'terror:jefes/{boss}/{name}'})
         print(out)
     json.dump(events, open(sounds_json, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
+    # Créditos: se reescriben las filas de los jefes (los generados no llevan)
     creditos = os.path.join(ROOT, 'CREDITOS.md')
-    text = open(creditos, encoding='utf-8').read()
-    new = [c for c in credits if c.split('|')[1].strip() not in text]
-    if new:
-        open(creditos, 'a', encoding='utf-8').write('\n'.join(new) + '\n')
+    lines = [l for l in open(creditos, encoding='utf-8').read().splitlines() if not l.startswith('| `jefes/')]
+    open(creditos, 'w', encoding='utf-8').write('\n'.join(lines + credits) + '\n')
 
 
 main()
