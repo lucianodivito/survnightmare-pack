@@ -32,8 +32,12 @@ const float THICK_END = 30.0;                // donde ya no se ve nada
 const vec3 MIST = vec3(0.55, 0.57, 0.60);    // gris de bruma
 const float MIST_MIX = 0.25;                 // cuanto gris se le mezcla al color de la niebla
 
+// El inicio puede ser negativo: la "niebla de lluvia" del juego lo corre hasta -160 y despues vuelve a 0 de a poco
+// (si venis de donde llovia, tarda como un minuto). Sin aceptarlo, la niebla espesa llegaba de golpe al rato. El agua
+// tambien empieza negativo, pero siempre justo en -8: ese se excluye, para no cambiar la niebla de abajo del agua.
 bool terror_boss_fog() {
-    return FogEnvironmentalStart >= 0.0 && FogEnvironmentalStart <= 10.01
+    return FogEnvironmentalStart >= -170.0 && FogEnvironmentalStart <= 10.01
+        && abs(FogEnvironmentalStart + 8.0) > 0.001
         && abs(FogEnvironmentalEnd - 96.0) < 0.01
         && abs(FogSkyEnd - FogEnvironmentalEnd) < 0.01
         && abs(FogCloudsEnd - FogEnvironmentalEnd) < 0.01;
