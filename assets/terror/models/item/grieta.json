@@ -1,0 +1,41 @@
+{
+  "textures": {
+    "disco": "terror:item/grieta",
+    "particle": "terror:item/grieta"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        7.95
+      ],
+      "to": [
+        16,
+        16,
+        8.05
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#disco"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#disco"
+        }
+      }
+    }
+  ]
+}
