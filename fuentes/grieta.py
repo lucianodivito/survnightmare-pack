@@ -29,43 +29,57 @@ def catmull(points, steps=60):
     return out
 
 
-def shape_mask(rnd):
-    """La forma: una curva con 4 a 6 puntos, a veces con un rulo en una punta, y grosor que crece hacia el medio."""
-    big = 4   # se dibuja grande y se achica, para que los bordes queden prolijos
-    # Una ola que cruza todo el cuadro, con una o dos vueltas
-    n = rnd.randint(6, 8)
-    amp, freq, phase = rnd.uniform(16, 30), rnd.uniform(0.7, 1.6), rnd.uniform(0, math.pi * 2)
-    pts = [(i / (n - 1), math.sin(i / (n - 1) * math.pi * 2 * freq + phase) * amp + rnd.uniform(-6, 6)) for i in range(n)]
-    pts = [(10 + t * 100, 64 + y) for t, y in pts]
-    if rnd.random() < 0.7:
-        # Una punta se enrosca en espiral, hacia adentro
-        ex, ey = pts[-1]
-        px, py = pts[-2]
-        a0 = math.atan2(ey - py, ex - px)
-        turn = rnd.choice((1, -1))
-        for k in range(1, 7):
-            a = a0 + turn * k * 0.9
-            r = 16 * (1 - k / 8)
-            pts.append((ex + math.cos(a) * r - math.cos(a0) * 4, ey + math.sin(a) * r - math.sin(a0) * 4))
-    # Girada al azar, y encajada en el cuadro dejando lugar para el halo
-    rot = rnd.uniform(-math.pi, math.pi)
-    pts = [((x - 64) * math.cos(rot) - (y - 64) * math.sin(rot), (x - 64) * math.sin(rot) + (y - 64) * math.cos(rot)) for x, y in pts]
-    min_x, max_x = min(p[0] for p in pts), max(p[0] for p in pts)
-    min_y, max_y = min(p[1] for p in pts), max(p[1] for p in pts)
-    fit = min((S - 28) / max(1, max_x - min_x), (S - 28) / max(1, max_y - min_y))
-    pts = [(14 + (x - min_x) * fit + ((S - 28) - (max_x - min_x) * fit) / 2,
-            14 + (y - min_y) * fit + ((S - 28) - (max_y - min_y) * fit) / 2) for x, y in pts]
-    curve = catmull(pts)
-    width = rnd.uniform(6, 9)
-    mask = Image.new('L', (S * big, S * big), 0)
-    d = ImageDraw.Draw(mask)
+def stroke(d, curve, width, rnd, big, start=0.0):
+    """Dibuja una curva como un desgarro: punta en los dos extremos (o, si {@code start} > 0, ancha donde nace y
+    afilada al final), y el borde mordido, irregular, como algo rasgado."""
     total = len(curve)
-    wobble = [rnd.uniform(0.75, 1.15) for _ in range(12)]
+    # Ruido del borde: suma de ondas cortas, para que el grosor tiemble a lo largo del tajo
+    waves = [(rnd.uniform(6, 18), rnd.uniform(0, math.pi * 2), rnd.uniform(0.08, 0.18)) for _ in range(3)]
     for i, (px, py) in enumerate(curve):
         t = i / (total - 1)
-        w = width * (math.sin(math.pi * min(1, t)) ** 0.6) * wobble[int(t * 11)]
-        r = max(0.6, w) * big
+        shape = math.sin(math.pi * t) if start == 0 else (1 - t) ** 1.2
+        jag = 1 + sum(a * math.sin(t * f * math.pi * 2 + ph) for f, ph, a in waves) + rnd.uniform(-0.12, 0.12)
+        r = max(0.4, width * shape * jag) * big
         d.ellipse([px * big - r, py * big - r, px * big + r, py * big + r], fill=255)
+
+
+def shape_mask(rnd):
+    """La forma: un tajo largo y ondulado que cruza el cuadro, afilado en las dos puntas y grueso en el medio, con el
+    borde mordido; a veces con una o dos rajaduras finitas que se abren hacia un costado."""
+    big = 4   # se dibuja grande y se achica, para que los bordes queden prolijos
+    n = rnd.randint(5, 7)
+    amp, freq, phase = rnd.uniform(10, 24), rnd.uniform(0.5, 1.2), rnd.uniform(0, math.pi * 2)
+    pts = [(i / (n - 1), math.sin(i / (n - 1) * math.pi * 2 * freq + phase) * amp + rnd.uniform(-5, 5)) for i in range(n)]
+    pts = [(10 + t * 108, 64 + y) for t, y in pts]
+    curve = catmull(pts)
+    # Las rajaduras: salen del medio del tajo hacia un costado, cada vez más finitas
+    branches = []
+    for _ in range(rnd.choice((0, 1, 1, 2))):
+        k = rnd.randint(len(curve) * 3 // 10, len(curve) * 7 // 10)
+        bx, by = curve[k]
+        nx, ny = curve[min(len(curve) - 1, k + 1)]
+        along = math.atan2(ny - by, nx - bx)
+        a = along + rnd.choice((1, -1)) * rnd.uniform(0.5, 1.1)
+        length = rnd.uniform(18, 32)
+        mid = (bx + math.cos(a) * length * 0.5 + rnd.uniform(-4, 4), by + math.sin(a) * length * 0.5 + rnd.uniform(-4, 4))
+        end = (bx + math.cos(a + rnd.uniform(-0.4, 0.4)) * length, by + math.sin(a + rnd.uniform(-0.4, 0.4)) * length)
+        branches.append(catmull([(bx, by), mid, end], 30))
+    # Girado al azar, y encajado en el cuadro dejando lugar para el halo
+    rot = rnd.uniform(-math.pi, math.pi)
+    every = curve + [p for b in branches for p in b]
+    turned = lambda p: ((p[0] - 64) * math.cos(rot) - (p[1] - 64) * math.sin(rot), (p[0] - 64) * math.sin(rot) + (p[1] - 64) * math.cos(rot))
+    every = [turned(p) for p in every]
+    min_x, max_x = min(p[0] for p in every), max(p[0] for p in every)
+    min_y, max_y = min(p[1] for p in every), max(p[1] for p in every)
+    fit = min((S - 28) / max(1, max_x - min_x), (S - 28) / max(1, max_y - min_y))
+    place = lambda p: (14 + (turned(p)[0] - min_x) * fit + ((S - 28) - (max_x - min_x) * fit) / 2,
+                       14 + (turned(p)[1] - min_y) * fit + ((S - 28) - (max_y - min_y) * fit) / 2)
+    width = rnd.uniform(7, 10)
+    mask = Image.new('L', (S * big, S * big), 0)
+    d = ImageDraw.Draw(mask)
+    stroke(d, [place(p) for p in curve], width, rnd, big)
+    for b in branches:
+        stroke(d, [place(p) for p in b], width * 0.45, rnd, big, start=1)
     return mask.resize((S, S), Image.LANCZOS)
 
 
