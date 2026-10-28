@@ -32,6 +32,8 @@ SOURCES = {
     767220: 'https://freesound.org/people/Wigglesworth/sounds/767220/',          # Rustling grass
     60024: 'https://freesound.org/people/qubodup/sounds/60024/',                 # swosh swinging sword 37
     788990: 'https://freesound.org/people/Robhog/sounds/788990/',                # SWOOSH Sound Effect
+    558969: 'https://freesound.org/people/sandb1ns/sounds/558969/',              # Fluorescent Lightbulb Break
+    637658: 'https://freesound.org/people/kyles/sounds/637658/',                 # light bulb glass burst
 }
 
 # Cada sonido: (evento, archivo, id de fuente, desde, duración, filtros de ffmpeg)
@@ -68,6 +70,14 @@ CLIPS = [
     ('espanta.hoz', 'hoz1', 60024, 0.0, 0.8, GRAVE.format(f=0.9)),
     ('espanta.hoz', 'hoz2', 788990, 0.0, 0.8, GRAVE.format(f=0.8)),
     ('espanta.muerte', 'muerte1', 565911, 4.0, 6.0, GRAVE.format(f=0.7) + ',aecho=0.8:0.8:140:0.5,afade=t=out:st=3.5:d=2.5'),
+    # El Caminante: casi todo generado (graves, raros); solo el farol que revienta es grabado
+    ('caminante.apagon', 'apagon1', 558969, 0.0, 1.2, GRAVE.format(f=0.8) + ',afade=t=out:st=0.9:d=0.3'),
+    ('caminante.apagon', 'apagon2', 637658, 0.0, 1.0, GRAVE.format(f=0.75) + ',afade=t=out:st=0.7:d=0.3'),
+    ('caminante.paso', 'paso1', 'boom', 0.0, 1.8, 'lowpass=f=300,aecho=0.8:0.9:400:0.4'),
+    ('caminante.llega', 'llega1', 'llega', 0.0, 2.6, 'lowpass=f=1500,afade=t=out:st=2.2:d=0.4'),
+    ('caminante.golpe', 'golpe1', 'tajo', 0.0, 0.9, 'lowpass=f=1200'),
+    ('caminante.salto', 'salto1', 'salto', 0.0, 0.7, 'highpass=f=120,lowpass=f=900'),
+    ('caminante.muerte', 'muerte1', 'caida', 0.0, 5.5, 'lowpass=f=900,aecho=0.8:0.85:200:0.5,afade=t=out:st=3.5:d=2'),
 ]
 
 
@@ -86,6 +96,11 @@ SYNTH = {
     'tarareo2': hum([98, 110, 82.4], 3.6),
     'golpe': "aevalsrc='(0.9*sin(2*PI*52*t)+0.5*(random(0)*2-1)*exp(-t*40))*exp(-t*8)':s=44100:d=0.7",
     'hundirse': "aevalsrc='(sin(2*PI*(110*t-9*t*t))+0.4*sin(4*PI*(110*t-9*t*t)))*0.35':s=44100:d=6",
+    'boom': "aevalsrc='(sin(2*PI*38*t)+0.6*sin(2*PI*57*t)+0.3*(random(0)*2-1)*exp(-t*12))*exp(-t*2.5)*0.6':s=44100:d=1.8",
+    'llega': "aevalsrc='(sin(2*PI*(60+40*t)*t)+sin(2*PI*(63+44*t)*t)+0.3*sin(2*PI*(120+90*t)*t))*0.25*min(1,t/1.5)':s=44100:d=2.6",
+    'tajo': "aevalsrc='(random(0)*2-1)*exp(-pow((t-0.18)*12,2))*0.6+0.9*sin(2*PI*45*t)*exp(-max(0,t-0.25)*10)*between(t,0.25,1)':s=44100:d=0.9",
+    'salto': "aevalsrc='(random(0)*2-1)*pow(t/0.7,3)*0.5':s=44100:d=0.7",
+    'caida': "aevalsrc='(sin(2*PI*(90*t-7*t*t))+sin(2*PI*(95*t-7.5*t*t))+0.25*(random(0)*2-1))*0.25':s=44100:d=5.5",
 }
 
 

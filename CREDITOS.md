@@ -65,3 +65,5 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | `jefes/espanta/hoz1.ogg` | swosh swinging sword 37.flac | qubodup | https://freesound.org/people/qubodup/sounds/60024/ |
 | `jefes/espanta/hoz2.ogg` | SWOOSH Sound Effect | Robhog | https://freesound.org/people/Robhog/sounds/788990/ |
 | `jefes/espanta/muerte1.ogg` | flock of crows.wav | Fenodyrie | https://freesound.org/people/Fenodyrie/sounds/565911/ |
+| `jefes/caminante/apagon1.ogg` | Fluorescent Lightbulb Break.wav | sandb1ns | https://freesound.org/people/sandb1ns/sounds/558969/ |
+| `jefes/caminante/apagon2.ogg` | light bulb glass burst drop on floor1.wav | kyles | https://freesound.org/people/kyles/sounds/637658/ |

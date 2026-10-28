@@ -26,5 +26,11 @@
   "terror.subtitulo.espanta.bandada": "Una bandada de cuervos",
   "terror.subtitulo.espanta.paja": "Cruje la paja",
   "terror.subtitulo.espanta.hoz": "Una hoz corta el aire",
-  "terror.subtitulo.espanta.muerte": "Los cuervos se van"
+  "terror.subtitulo.espanta.muerte": "Los cuervos se van",
+  "terror.subtitulo.caminante.apagon": "Un farol revienta",
+  "terror.subtitulo.caminante.paso": "Un paso enorme, lejos",
+  "terror.subtitulo.caminante.llega": "Algo llegó",
+  "terror.subtitulo.caminante.golpe": "Un golpe",
+  "terror.subtitulo.caminante.salto": "Algo desaparece",
+  "terror.subtitulo.caminante.muerte": "Algo se derrumba"
 }
