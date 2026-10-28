@@ -382,6 +382,63 @@
     ],
     "subtitle": "terror.subtitulo.caminante.salto"
   },
+  "abajo.canto": {
+    "sounds": [
+      {
+        "name": "terror:jefes/abajo/canto1"
+      },
+      {
+        "name": "terror:jefes/abajo/canto2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.abajo.canto"
+  },
+  "abajo.burbujas": {
+    "sounds": [
+      {
+        "name": "terror:jefes/abajo/burbujas1"
+      },
+      {
+        "name": "terror:jefes/abajo/burbujas2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.abajo.burbujas"
+  },
+  "abajo.surge": {
+    "sounds": [
+      {
+        "name": "terror:jefes/abajo/surge1"
+      },
+      {
+        "name": "terror:jefes/abajo/surge2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.abajo.surge"
+  },
+  "abajo.golpe": {
+    "sounds": [
+      {
+        "name": "terror:jefes/abajo/golpe1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.abajo.golpe"
+  },
+  "abajo.arrastre": {
+    "sounds": [
+      {
+        "name": "terror:jefes/abajo/arrastre1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.abajo.arrastre"
+  },
+  "abajo.muerte": {
+    "sounds": [
+      {
+        "name": "terror:jefes/abajo/muerte1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.abajo.muerte"
+  },
   "reflejo.pasos": {
     "sounds": [
       {

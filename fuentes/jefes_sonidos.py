@@ -39,6 +39,13 @@ SOURCES = {
     444166: 'https://freesound.org/people/cloe.king/sounds/444166/',             # Wine Glass Ring
     203368: 'https://freesound.org/people/C_Rogers/sounds/203368/',              # glass-shattering-hit_01
     349905: 'https://freesound.org/people/bevibeldesign/sounds/349905/',         # Slow Motion Glass Shatter
+    88449: 'https://freesound.org/people/davidou/sounds/88449/',                 # Baleines
+    82325: 'https://freesound.org/people/KEVOY/sounds/82325/',                   # Diving with whales
+    529383: 'https://freesound.org/people/calebrankin/sounds/529383/',           # Bubbles In Water
+    395556: 'https://freesound.org/people/Kinoton/sounds/395556/',               # Single Water Bubbles
+    442773: 'https://freesound.org/people/qubodup/sounds/442773/',               # Big Water Splash
+    436792: 'https://freesound.org/people/roboroo/sounds/436792/',               # Large Splash
+    545823: 'https://freesound.org/people/benj500/sounds/545823/',               # Water Splosh
 }
 
 # Cada sonido: (evento, archivo, id de fuente, desde, duración, filtros de ffmpeg)
@@ -82,6 +89,16 @@ CLIPS = [
     ('caminante.llega', 'llega1', 'llega', 0.0, 2.6, 'lowpass=f=180,lowpass=f=180,aecho=0.8:0.85:300:0.4'),
     ('caminante.golpe', 'golpe1', 'tajo', 0.0, 0.6, 'lowpass=f=260,lowpass=f=260,volume=2'),
     ('caminante.salto', 'salto1', 'salto', 0.0, 0.7, 'highpass=f=120,lowpass=f=900'),
+    # Lo de abajo
+    ('abajo.canto', 'canto1', 88449, 0.0, 5.5, GRAVE.format(f=0.7) + ',aecho=0.8:0.85:300:0.45,afade=t=out:st=4.5:d=1'),
+    ('abajo.canto', 'canto2', 82325, 10.0, 7.0, GRAVE.format(f=0.75) + ',aecho=0.8:0.85:300:0.45,afade=t=in:d=0.8,afade=t=out:st=6:d=1'),
+    ('abajo.burbujas', 'burbujas1', 529383, 0.0, 3.0, 'afade=t=in:d=0.3,afade=t=out:st=2.4:d=0.6'),
+    ('abajo.burbujas', 'burbujas2', 395556, 2.0, 3.0, GRAVE.format(f=0.8) + ',afade=t=in:d=0.3,afade=t=out:st=2.4:d=0.6'),
+    ('abajo.surge', 'surge1', 442773, 0.0, 2.0, GRAVE.format(f=0.8)),
+    ('abajo.surge', 'surge2', 436792, 0.0, 1.8, GRAVE.format(f=0.75)),
+    ('abajo.golpe', 'golpe1', 545823, 0.0, 1.5, GRAVE.format(f=0.7) + ',afade=t=out:st=1.1:d=0.4'),
+    ('abajo.arrastre', 'arrastre1', 529383, 10.0, 3.0, GRAVE.format(f=0.6) + ',lowpass=f=800,afade=t=in:d=0.3,afade=t=out:st=2.4:d=0.6'),
+    ('abajo.muerte', 'muerte1', 88449, 0.0, 5.5, 'areverse,' + GRAVE.format(f=0.55) + ',aecho=0.8:0.9:400:0.5,afade=t=out:st=4:d=1.5'),
     # El que baja (tu reflejo)
     ('reflejo.pasos', 'pasos1', 616615, 0.0, 4.0, 'afade=t=in:d=0.3,afade=t=out:st=3.4:d=0.6'),
     ('reflejo.pasos', 'pasos2', 616615, 4.0, 4.0, GRAVE.format(f=0.92) + ',afade=t=in:d=0.3,afade=t=out:st=3.4:d=0.6'),

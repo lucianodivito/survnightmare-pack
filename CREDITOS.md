@@ -67,6 +67,15 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | `jefes/espanta/muerte1.ogg` | flock of crows.wav | Fenodyrie | https://freesound.org/people/Fenodyrie/sounds/565911/ |
 | `jefes/caminante/apagon1.ogg` | Fluorescent Lightbulb Break.wav | sandb1ns | https://freesound.org/people/sandb1ns/sounds/558969/ |
 | `jefes/caminante/apagon2.ogg` | light bulb glass burst drop on floor1.wav | kyles | https://freesound.org/people/kyles/sounds/637658/ |
+| `jefes/abajo/canto1.ogg` | Baleines.wav | davidou | https://freesound.org/people/davidou/sounds/88449/ |
+| `jefes/abajo/canto2.ogg` | Diving with whales.wav | KEVOY | https://freesound.org/people/KEVOY/sounds/82325/ |
+| `jefes/abajo/burbujas1.ogg` | Bubbles In Water | calebrankin | https://freesound.org/people/calebrankin/sounds/529383/ |
+| `jefes/abajo/burbujas2.ogg` | Single Water Bubbles | Kinoton | https://freesound.org/people/Kinoton/sounds/395556/ |
+| `jefes/abajo/surge1.ogg` | Big Water Splash | qubodup | https://freesound.org/people/qubodup/sounds/442773/ |
+| `jefes/abajo/surge2.ogg` | Large Splash | roboroo | https://freesound.org/people/roboroo/sounds/436792/ |
+| `jefes/abajo/golpe1.ogg` | Water Splosh | benj500 | https://freesound.org/people/benj500/sounds/545823/ |
+| `jefes/abajo/arrastre1.ogg` | Bubbles In Water | calebrankin | https://freesound.org/people/calebrankin/sounds/529383/ |
+| `jefes/abajo/muerte1.ogg` | Baleines.wav | davidou | https://freesound.org/people/davidou/sounds/88449/ |
 | `jefes/reflejo/pasos1.ogg` | 120807 Footsteps up stone stairs, slow, boots, echo, Aarhus.wav | TRP | https://freesound.org/people/TRP/sounds/616615/ |
 | `jefes/reflejo/pasos2.ogg` | 120807 Footsteps up stone stairs, slow, boots, echo, Aarhus.wav | TRP | https://freesound.org/people/TRP/sounds/616615/ |
 | `jefes/reflejo/vidrio1.ogg` | glass - singing wine glass - full 01.wav | Anthousai | https://freesound.org/people/Anthousai/sounds/447779/ |
