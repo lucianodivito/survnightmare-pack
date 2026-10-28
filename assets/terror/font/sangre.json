@@ -1,0 +1,22 @@
+{
+  "providers": [
+    {
+      "type": "space",
+      "advances": {
+        " ": 5
+      }
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/sangre.png",
+      "height": 14,
+      "ascent": 9,
+      "chars": [
+        "ABCDEFGHIJKLMNOP",
+        "QRSTUVWXYZ\u00d1\u00c1\u00c9\u00cd\u00d3\u00da",
+        "0123456789.,!?\u00a1\u00bf",
+        "-'\":;()+/<>_#*%&"
+      ]
+    }
+  ]
+}
