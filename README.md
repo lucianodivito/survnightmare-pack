@@ -22,3 +22,4 @@ Contenido:
 - `shaders/core/text.fsh`: en los inventarios, el texto gris oscuro del juego (0x404040: "Inventario", "Cofre"...) pasa a gris claro para que se lea sobre el fondo oscuro.
 - `assets/terror/font/menu.json` → `\ue001`: la calavera del título del menú, más grande (12 px).
 - Los gritos (`sounds/susto/`) están recortados para que griten de entrada: sin silencio inicial (umbral -26 dB) y a `sus1` además se le sacan los primeros 0,45 s, que eran una subida lenta. Si se regeneran con el script de conversión, repetir el recorte.
+- `textures/gui/sprites/hud/hotbar*.png`: barra de ítems en los grises del inventario (casilleros oscuros, sin el tono amarillento) y la selección en el rojo del server.
