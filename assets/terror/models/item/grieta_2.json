@@ -1,7 +1,7 @@
 {
   "textures": {
-    "disco": "terror:item/grieta",
-    "particle": "terror:item/grieta"
+    "tajo": "terror:item/grieta_2",
+    "particle": "terror:item/grieta_2"
   },
   "elements": [
     {
@@ -24,7 +24,7 @@
             16,
             16
           ],
-          "texture": "#disco"
+          "texture": "#tajo"
         },
         "south": {
           "uv": [
@@ -33,7 +33,7 @@
             16,
             16
           ],
-          "texture": "#disco"
+          "texture": "#tajo"
         }
       }
     }
