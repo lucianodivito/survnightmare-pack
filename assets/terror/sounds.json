@@ -382,6 +382,68 @@
     ],
     "subtitle": "terror.subtitulo.caminante.salto"
   },
+  "loquehay.grito": {
+    "sounds": [
+      {
+        "name": "terror:jefes/loquehay/grito1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.loquehay.grito"
+  },
+  "loquehay.chillido": {
+    "sounds": [
+      {
+        "name": "terror:jefes/loquehay/chillido1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.loquehay.chillido"
+  },
+  "loquehay.susurro": {
+    "sounds": [
+      {
+        "name": "terror:jefes/loquehay/susurro1"
+      },
+      {
+        "name": "terror:jefes/loquehay/susurro2"
+      },
+      {
+        "name": "terror:jefes/loquehay/susurro3"
+      }
+    ],
+    "subtitle": "terror.subtitulo.loquehay.susurro"
+  },
+  "loquehay.respira": {
+    "sounds": [
+      {
+        "name": "terror:jefes/loquehay/respira1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.loquehay.respira"
+  },
+  "loquehay.ojos": {
+    "sounds": [
+      {
+        "name": "terror:jefes/loquehay/ojos1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.loquehay.ojos"
+  },
+  "loquehay.golpe": {
+    "sounds": [
+      {
+        "name": "terror:jefes/loquehay/golpe1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.loquehay.golpe"
+  },
+  "loquehay.muerte": {
+    "sounds": [
+      {
+        "name": "terror:jefes/loquehay/muerte1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.loquehay.muerte"
+  },
   "abajo.canto": {
     "sounds": [
       {

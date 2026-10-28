@@ -1,0 +1,41 @@
+{
+  "textures": {
+    "ojos": "terror:item/ojos",
+    "particle": "terror:item/ojos"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        7.95
+      ],
+      "to": [
+        16,
+        16,
+        8.05
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#ojos"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#ojos"
+        }
+      }
+    }
+  ]
+}

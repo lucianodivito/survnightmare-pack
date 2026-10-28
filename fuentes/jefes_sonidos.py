@@ -46,6 +46,12 @@ SOURCES = {
     442773: 'https://freesound.org/people/qubodup/sounds/442773/',               # Big Water Splash
     436792: 'https://freesound.org/people/roboroo/sounds/436792/',               # Large Splash
     545823: 'https://freesound.org/people/benj500/sounds/545823/',               # Water Splosh
+    587354: 'https://freesound.org/people/Breviceps/sounds/587354/',             # Jumpscare Scream
+    725210: 'https://freesound.org/people/zombieallen/sounds/725210/',           # Evil Screech
+    580320: 'https://freesound.org/people/SamsterBirdies/sounds/580320/',        # Scary horror terror shriek
+    219597: 'https://freesound.org/people/NoraMeld/sounds/219597/',              # HORROR WHISPER VOICE: ANGRY
+    316797: 'https://freesound.org/people/dimbark1/sounds/316797/',              # Ghostly Whispers
+    554307: 'https://freesound.org/people/casiba842/sounds/554307/',             # Scared Male Heavy Breathing
 }
 
 # Cada sonido: (evento, archivo, id de fuente, desde, duración, filtros de ffmpeg)
@@ -89,6 +95,16 @@ CLIPS = [
     ('caminante.llega', 'llega1', 'llega', 0.0, 2.6, 'lowpass=f=180,lowpass=f=180,aecho=0.8:0.85:300:0.4'),
     ('caminante.golpe', 'golpe1', 'tajo', 0.0, 0.6, 'lowpass=f=260,lowpass=f=260,volume=2'),
     ('caminante.salto', 'salto1', 'salto', 0.0, 0.7, 'highpass=f=120,lowpass=f=900'),
+    # Lo que hay
+    ('loquehay.grito', 'grito1', 587354, 0.0, 2.7, 'volume=1.6'),
+    ('loquehay.chillido', 'chillido1', 725210, 0.0, 4.0, GRAVE.format(f=0.85) + ',aecho=0.8:0.8:120:0.4,afade=t=out:st=3.2:d=0.8'),
+    ('loquehay.susurro', 'susurro1', 219597, 0.0, 3.5, 'aecho=0.8:0.8:80:0.4,afade=t=in:d=0.2,afade=t=out:st=3:d=0.5'),
+    ('loquehay.susurro', 'susurro2', 219597, 8.0, 3.5, GRAVE.format(f=0.9) + ',aecho=0.8:0.8:80:0.4,afade=t=in:d=0.2,afade=t=out:st=3:d=0.5'),
+    ('loquehay.susurro', 'susurro3', 316797, 0.0, 4.0, 'afade=t=in:d=0.3,afade=t=out:st=3.4:d=0.6'),
+    ('loquehay.respira', 'respira1', 554307, 0.0, 3.0, GRAVE.format(f=0.6) + ',lowpass=f=1800,afade=t=out:st=2.5:d=0.5'),
+    ('loquehay.ojos', 'ojos1', 'parpado', 0.0, 0.5, 'highpass=f=300,lowpass=f=4000'),
+    ('loquehay.golpe', 'golpe1', 'zarpazo', 0.0, 0.7, 'lowpass=f=900'),
+    ('loquehay.muerte', 'muerte1', 580320, 0.0, 8.0, GRAVE.format(f=0.6) + ',aecho=0.8:0.9:300:0.5,afade=t=out:st=5:d=3'),
     # Lo de abajo
     ('abajo.canto', 'canto1', 88449, 0.0, 5.5, GRAVE.format(f=0.7) + ',aecho=0.8:0.85:300:0.45,afade=t=out:st=4.5:d=1'),
     ('abajo.canto', 'canto2', 82325, 10.0, 7.0, GRAVE.format(f=0.75) + ',aecho=0.8:0.85:300:0.45,afade=t=in:d=0.8,afade=t=out:st=6:d=1'),
@@ -126,6 +142,8 @@ SYNTH = {
     'tarareo2': hum([98, 110, 82.4], 3.6),
     'golpe': "aevalsrc='(0.9*sin(2*PI*52*t)+0.5*(random(0)*2-1)*exp(-t*40))*exp(-t*8)':s=44100:d=0.7",
     'hundirse': "aevalsrc='(sin(2*PI*(110*t-9*t*t))+0.4*sin(4*PI*(110*t-9*t*t)))*0.35':s=44100:d=6",
+    'parpado': "aevalsrc='(random(0)*2-1)*exp(-t*40)*0.8+(random(0)*2-1)*exp(-pow((t-0.18)*30,2))*0.5':s=44100:d=0.5",
+    'zarpazo': "aevalsrc='(random(0)*2-1)*exp(-pow((t-0.08)*18,2))*0.9+(random(0)*2-1)*exp(-t*9)*0.5*between(t,0.12,0.7)':s=44100:d=0.7",
     'boom': "aevalsrc='(sin(2*PI*38*t)+0.6*sin(2*PI*57*t)+0.3*(random(0)*2-1)*exp(-t*12))*exp(-t*2.5)*0.6':s=44100:d=1.8",
     'llega': "aevalsrc='(random(0)*2-1)*pow(min(1,t/2.2),2)*0.8*if(lt(t,2.25),1,exp(-(t-2.25)*12))':s=44100:d=2.6",
     'tajo': "aevalsrc='(random(0)*2-1)*exp(-t*14)*0.9':s=44100:d=0.6",

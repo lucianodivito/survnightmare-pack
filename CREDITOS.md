@@ -67,6 +67,13 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | `jefes/espanta/muerte1.ogg` | flock of crows.wav | Fenodyrie | https://freesound.org/people/Fenodyrie/sounds/565911/ |
 | `jefes/caminante/apagon1.ogg` | Fluorescent Lightbulb Break.wav | sandb1ns | https://freesound.org/people/sandb1ns/sounds/558969/ |
 | `jefes/caminante/apagon2.ogg` | light bulb glass burst drop on floor1.wav | kyles | https://freesound.org/people/kyles/sounds/637658/ |
+| `jefes/loquehay/grito1.ogg` | Jumpscare Scream | Breviceps | https://freesound.org/people/Breviceps/sounds/587354/ |
+| `jefes/loquehay/chillido1.ogg` | Evil Screech | zombieallen | https://freesound.org/people/zombieallen/sounds/725210/ |
+| `jefes/loquehay/susurro1.ogg` | HORROR WHISPER VOICE: ANGRY | NoraMeld | https://freesound.org/people/NoraMeld/sounds/219597/ |
+| `jefes/loquehay/susurro2.ogg` | HORROR WHISPER VOICE: ANGRY | NoraMeld | https://freesound.org/people/NoraMeld/sounds/219597/ |
+| `jefes/loquehay/susurro3.ogg` | Ghostly Whispers | dimbark1 | https://freesound.org/people/dimbark1/sounds/316797/ |
+| `jefes/loquehay/respira1.ogg` | Scared Male Heavy Breathing | casiba842 | https://freesound.org/people/casiba842/sounds/554307/ |
+| `jefes/loquehay/muerte1.ogg` | Scary horror terror shriek | SamsterBirdies | https://freesound.org/people/SamsterBirdies/sounds/580320/ |
 | `jefes/abajo/canto1.ogg` | Baleines.wav | davidou | https://freesound.org/people/davidou/sounds/88449/ |
 | `jefes/abajo/canto2.ogg` | Diving with whales.wav | KEVOY | https://freesound.org/people/KEVOY/sounds/82325/ |
 | `jefes/abajo/burbujas1.ogg` | Bubbles In Water | calebrankin | https://freesound.org/people/calebrankin/sounds/529383/ |

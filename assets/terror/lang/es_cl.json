@@ -43,5 +43,12 @@
   "terror.subtitulo.abajo.surge": "Algo enorme sale del agua",
   "terror.subtitulo.abajo.golpe": "Un golpe en el agua",
   "terror.subtitulo.abajo.arrastre": "Algo te arrastra al fondo",
-  "terror.subtitulo.abajo.muerte": "Algo se hunde para siempre"
+  "terror.subtitulo.abajo.muerte": "Algo se hunde para siempre",
+  "terror.subtitulo.loquehay.grito": "¡UN GRITO!",
+  "terror.subtitulo.loquehay.chillido": "Algo chilla de furia",
+  "terror.subtitulo.loquehay.susurro": "Algo susurra tu nombre",
+  "terror.subtitulo.loquehay.respira": "Algo respira detrás tuyo",
+  "terror.subtitulo.loquehay.ojos": "Algo abre los ojos",
+  "terror.subtitulo.loquehay.golpe": "Un zarpazo",
+  "terror.subtitulo.loquehay.muerte": "Algo se deshace en la oscuridad"
 }
