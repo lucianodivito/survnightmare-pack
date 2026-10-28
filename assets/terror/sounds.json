@@ -185,5 +185,114 @@
       }
     ],
     "subtitle": "terror.subtitulo.detras"
+  },
+  "inquilino.puerta": {
+    "sounds": [
+      {
+        "name": "terror:jefes/inquilino/puerta1"
+      },
+      {
+        "name": "terror:jefes/inquilino/puerta2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.inquilino.puerta"
+  },
+  "inquilino.paso": {
+    "sounds": [
+      {
+        "name": "terror:jefes/inquilino/paso1"
+      },
+      {
+        "name": "terror:jefes/inquilino/paso2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.inquilino.paso"
+  },
+  "inquilino.parpadeo": {
+    "sounds": [
+      {
+        "name": "terror:jefes/inquilino/parpadeo1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.inquilino.parpadeo"
+  },
+  "inquilino.voz": {
+    "sounds": [
+      {
+        "name": "terror:jefes/inquilino/voz1"
+      },
+      {
+        "name": "terror:jefes/inquilino/voz2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.inquilino.voz"
+  },
+  "inquilino.golpe": {
+    "sounds": [
+      {
+        "name": "terror:jefes/inquilino/golpe1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.inquilino.golpe"
+  },
+  "inquilino.muerte": {
+    "sounds": [
+      {
+        "name": "terror:jefes/inquilino/muerte1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.inquilino.muerte"
+  },
+  "chico.cajita": {
+    "sounds": [
+      {
+        "name": "terror:jefes/chico/cajita1"
+      },
+      {
+        "name": "terror:jefes/chico/cajita2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.chico.cajita"
+  },
+  "chico.corre": {
+    "sounds": [
+      {
+        "name": "terror:jefes/chico/corre1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.chico.corre"
+  },
+  "chico.llanto": {
+    "sounds": [
+      {
+        "name": "terror:jefes/chico/llanto1"
+      },
+      {
+        "name": "terror:jefes/chico/llanto2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.chico.llanto"
+  },
+  "chico.muerte": {
+    "sounds": [
+      {
+        "name": "terror:jefes/chico/muerte1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.chico.muerte"
+  },
+  "chico.risa": {
+    "sounds": [
+      {
+        "name": "terror:jefes/chico/risa1"
+      },
+      {
+        "name": "terror:jefes/chico/risa2"
+      },
+      {
+        "name": "terror:jefes/chico/risa3"
+      }
+    ],
+    "subtitle": "terror.subtitulo.chico.risa"
   }
 }

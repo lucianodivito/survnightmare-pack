@@ -43,3 +43,21 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | `luna/lun4.ogg` | Pound of Flesh 1 | magnuswaker | https://freesound.org/people/magnuswaker/sounds/522091/ |
 | `luna/lun5.ogg` | Sub Rush 1 | JarredGibb | https://freesound.org/people/JarredGibb/sounds/263892/ |
 | `luna/lun6.ogg` | Dark Magic Loop | qubodup | https://freesound.org/people/qubodup/sounds/442825/ |
+| `jefes/inquilino/puerta1.ogg` | Door Creak | stib | https://freesound.org/s/346267/ |
+| `jefes/inquilino/puerta2.ogg` | Door Creak | stib | https://freesound.org/s/346267/ |
+| `jefes/inquilino/paso1.ogg` | Wood Creak Single V2 | Rudmer_Rotteveel | https://freesound.org/people/Rudmer_Rotteveel/sounds/502504/ |
+| `jefes/inquilino/paso2.ogg` | Wood Creak Single V5 | Rudmer_Rotteveel | https://freesound.org/people/Rudmer_Rotteveel/sounds/506660/ |
+| `jefes/inquilino/parpadeo1.ogg` | Lights Flicker On.wav | mmaruska | https://freesound.org/people/mmaruska/sounds/232447/ |
+| `jefes/inquilino/voz1.ogg` | Grumpy Old Man.wav | husky70 | https://freesound.org/people/husky70/sounds/157564/ |
+| `jefes/inquilino/voz2.ogg` | Grumpy Old Man.wav | husky70 | https://freesound.org/people/husky70/sounds/157564/ |
+| `jefes/inquilino/golpe1.ogg` | Door Creak | stib | https://freesound.org/s/346267/ |
+| `jefes/inquilino/muerte1.ogg` | Grumpy Old Man.wav | husky70 | https://freesound.org/people/husky70/sounds/157564/ |
+| `jefes/chico/cajita1.ogg` | creepy music box.wav | Modification1089 | https://freesound.org/people/Modification1089/sounds/274379/ |
+| `jefes/chico/cajita2.ogg` | creepy music box.wav | Modification1089 | https://freesound.org/people/Modification1089/sounds/274379/ |
+| `jefes/chico/corre1.ogg` | barefoot hall running | Splushionsindasky | https://freesound.org/people/Splushionsindasky/sounds/397333/ |
+| `jefes/chico/llanto1.ogg` | Crying baby 1 | MBPL | https://freesound.org/people/MBPL/sounds/667199/ |
+| `jefes/chico/llanto2.ogg` | baby crying in a dark corridor.wav | Mellun | https://freesound.org/people/Mellun/sounds/582341/ |
+| `jefes/chico/muerte1.ogg` | creepy music box.wav | Modification1089 | https://freesound.org/people/Modification1089/sounds/274379/ |
+| `jefes/chico/risa1.ogg` | Child Laughing sound Effects-11 | SignatureSoundsOrg | https://freesound.org/people/SignatureSoundsOrg/sounds/872110/ |
+| `jefes/chico/risa2.ogg` | Child Laughing sound Effects-11 | SignatureSoundsOrg | https://freesound.org/people/SignatureSoundsOrg/sounds/872110/ |
+| `jefes/chico/risa3.ogg` | Child Laughing sound Effects-11 | SignatureSoundsOrg | https://freesound.org/people/SignatureSoundsOrg/sounds/872110/ |
