@@ -286,5 +286,57 @@
       }
     ],
     "subtitle": "terror.subtitulo.chico.muerte"
+  },
+  "espanta.cuervo": {
+    "sounds": [
+      {
+        "name": "terror:jefes/espanta/cuervo1"
+      },
+      {
+        "name": "terror:jefes/espanta/cuervo2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.espanta.cuervo"
+  },
+  "espanta.bandada": {
+    "sounds": [
+      {
+        "name": "terror:jefes/espanta/bandada1"
+      },
+      {
+        "name": "terror:jefes/espanta/bandada2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.espanta.bandada"
+  },
+  "espanta.paja": {
+    "sounds": [
+      {
+        "name": "terror:jefes/espanta/paja1"
+      },
+      {
+        "name": "terror:jefes/espanta/paja2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.espanta.paja"
+  },
+  "espanta.hoz": {
+    "sounds": [
+      {
+        "name": "terror:jefes/espanta/hoz1"
+      },
+      {
+        "name": "terror:jefes/espanta/hoz2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.espanta.hoz"
+  },
+  "espanta.muerte": {
+    "sounds": [
+      {
+        "name": "terror:jefes/espanta/muerte1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.espanta.muerte"
   }
 }

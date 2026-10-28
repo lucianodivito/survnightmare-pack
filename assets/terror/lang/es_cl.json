@@ -21,5 +21,10 @@
   "terror.subtitulo.chico.cajita": "Una cajita de música",
   "terror.subtitulo.chico.risa": "Un chico se ríe",
   "terror.subtitulo.chico.llanto": "Un chico llora",
-  "terror.subtitulo.chico.muerte": "La cajita se detiene"
+  "terror.subtitulo.chico.muerte": "La cajita se detiene",
+  "terror.subtitulo.espanta.cuervo": "Un cuervo grazna",
+  "terror.subtitulo.espanta.bandada": "Una bandada de cuervos",
+  "terror.subtitulo.espanta.paja": "Cruje la paja",
+  "terror.subtitulo.espanta.hoz": "Una hoz corta el aire",
+  "terror.subtitulo.espanta.muerte": "Los cuervos se van"
 }

@@ -56,3 +56,12 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | `jefes/chico/llanto1.ogg` | Crying baby 1 | MBPL | https://freesound.org/people/MBPL/sounds/667199/ |
 | `jefes/chico/llanto2.ogg` | baby crying in a dark corridor.wav | Mellun | https://freesound.org/people/Mellun/sounds/582341/ |
 | `jefes/chico/muerte1.ogg` | creepy music box.wav | Modification1089 | https://freesound.org/people/Modification1089/sounds/274379/ |
+| `jefes/espanta/cuervo1.ogg` | crow.wav | nigelcoop | https://freesound.org/people/nigelcoop/sounds/75162/ |
+| `jefes/espanta/cuervo2.ogg` | Crows_02.wav | Q.K. | https://freesound.org/people/Q.K./sounds/56234/ |
+| `jefes/espanta/bandada1.ogg` | flock of crows.wav | Fenodyrie | https://freesound.org/people/Fenodyrie/sounds/565911/ |
+| `jefes/espanta/bandada2.ogg` | crow wings flutter.wav | lwdickens | https://freesound.org/people/lwdickens/sounds/263483/ |
+| `jefes/espanta/paja1.ogg` | Dry Grass Rustle.wav | TheSupremeMuffinPooter | https://freesound.org/people/TheSupremeMuffinPooter/sounds/525268/ |
+| `jefes/espanta/paja2.ogg` | Rustling grass | Wigglesworth | https://freesound.org/people/Wigglesworth/sounds/767220/ |
+| `jefes/espanta/hoz1.ogg` | swosh swinging sword 37.flac | qubodup | https://freesound.org/people/qubodup/sounds/60024/ |
+| `jefes/espanta/hoz2.ogg` | SWOOSH Sound Effect | Robhog | https://freesound.org/people/Robhog/sounds/788990/ |
+| `jefes/espanta/muerte1.ogg` | flock of crows.wav | Fenodyrie | https://freesound.org/people/Fenodyrie/sounds/565911/ |

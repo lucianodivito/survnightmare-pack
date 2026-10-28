@@ -24,6 +24,14 @@ SOURCES = {
     667199: 'https://freesound.org/people/MBPL/sounds/667199/',                  # Crying baby 1
     582341: 'https://freesound.org/people/Mellun/sounds/582341/',                # baby crying in a dark corridor
     872110: 'https://freesound.org/people/SignatureSoundsOrg/sounds/872110/',    # Child Laughing sound Effects-11
+    75162: 'https://freesound.org/people/nigelcoop/sounds/75162/',               # crow.wav
+    56234: 'https://freesound.org/people/Q.K./sounds/56234/',                    # Crows_02.wav
+    565911: 'https://freesound.org/people/Fenodyrie/sounds/565911/',             # flock of crows
+    263483: 'https://freesound.org/people/lwdickens/sounds/263483/',             # crow wings flutter
+    525268: 'https://freesound.org/people/TheSupremeMuffinPooter/sounds/525268/',  # Dry Grass Rustle
+    767220: 'https://freesound.org/people/Wigglesworth/sounds/767220/',          # Rustling grass
+    60024: 'https://freesound.org/people/qubodup/sounds/60024/',                 # swosh swinging sword 37
+    788990: 'https://freesound.org/people/Robhog/sounds/788990/',                # SWOOSH Sound Effect
 }
 
 # Cada sonido: (evento, archivo, id de fuente, desde, duración, filtros de ffmpeg)
@@ -50,6 +58,16 @@ CLIPS = [
     ('chico.llanto', 'llanto1', 667199, 0.0, 1.6, GRAVE.format(f=1.2) + ',afade=t=out:st=1.2:d=0.4'),
     ('chico.llanto', 'llanto2', 582341, 1.0, 2.0, GRAVE.format(f=1.1) + ',aecho=0.8:0.6:50:0.3,afade=t=out:st=1.5:d=0.5'),
     ('chico.muerte', 'muerte1', 274379, 30.0, 8.0, GRAVE.format(f=0.6) + ',atempo=0.8,aecho=0.8:0.8:150:0.5,afade=t=out:st=5:d=4'),
+    # El Espantapájaros
+    ('espanta.cuervo', 'cuervo1', 75162, 0.0, 2.5, GRAVE.format(f=0.9) + ',afade=t=out:st=2:d=0.5'),
+    ('espanta.cuervo', 'cuervo2', 56234, 0.0, 2.5, GRAVE.format(f=0.85) + ',afade=t=out:st=2:d=0.5'),
+    ('espanta.bandada', 'bandada1', 565911, 0.0, 4.0, 'afade=t=in:d=0.3,afade=t=out:st=3:d=1'),
+    ('espanta.bandada', 'bandada2', 263483, 0.0, 3.0, 'afade=t=out:st=2.3:d=0.7'),
+    ('espanta.paja', 'paja1', 525268, 0.0, 1.2, 'afade=t=out:st=0.9:d=0.3'),
+    ('espanta.paja', 'paja2', 767220, 0.0, 1.2, GRAVE.format(f=0.85) + ',afade=t=out:st=0.9:d=0.3'),
+    ('espanta.hoz', 'hoz1', 60024, 0.0, 0.8, GRAVE.format(f=0.9)),
+    ('espanta.hoz', 'hoz2', 788990, 0.0, 0.8, GRAVE.format(f=0.8)),
+    ('espanta.muerte', 'muerte1', 565911, 4.0, 6.0, GRAVE.format(f=0.7) + ',aecho=0.8:0.8:140:0.5,afade=t=out:st=3.5:d=2.5'),
 ]
 
 
