@@ -3,7 +3,7 @@ Las armas especiales con su propia textura (terror:<arma>): parten de las del ju
 y las rehacen, para que se distingan de una común a la distancia.
 - Condenado (espada, pico, hacha, pala): dibujados a mano en hierro forjado (filo claro, acero, sombra, remaches) con
   el mango de cuero envuelto en cadena. El arco: madera negra y cuerda blanca.
-- Armadura del Condenado: placas de acero gris con borde claro, contorno negro y remaches; también puesta.
+- Armadura del Condenado: acero liso con volumen y el borde en un tono oscuro del mismo acero; también puesta.
 - Ballesta del Vigía: madera quemada, metal oxidado con bordes vivos y remaches.
 - Mazo de la Luna Roja: la cabeza rojo sangre, con púas y gotas que caen.
 - Lanza del Umbral: negra violácea, con el borde violeta y una grieta de alma en el medio.
@@ -181,22 +181,36 @@ def umbral(img):
 
 
 def armadura(img):
-    """Hierro forjado: placas de acero gris, el borde de arriba claro, contorno negro y remaches."""
+    """Acero liso con volumen: más claro arriba a la izquierda, más oscuro abajo a la derecha, y el borde en un tono
+    oscuro del mismo acero (no negro), como los ítems del juego. Sin líneas ni remaches en el medio."""
     px = img.load()
     w, h = img.size
     orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
     pts = [p for p, c in orig.items() if c[3]]
+    if not pts:
+        return img
+    minx, maxx = min(p[0] for p in pts), max(p[0] for p in pts)
+    miny, maxy = min(p[1] for p in pts), max(p[1] for p in pts)
     for (x, y) in pts:
         l = lum(orig[(x, y)])
-        if lit(px, w, h, x, y) and edge(px, w, h, x, y):
-            px[x, y] = gray(206)                                                        # borde de arriba, claro
-        elif edge(px, w, h, x, y):
-            px[x, y] = gray(24)                                                         # contorno negro
-        elif hashed(x, y, 7):
-            px[x, y] = gray(196)                                                        # remaches
+        # Volumen: de 0 (arriba a la izquierda) a 1 (abajo a la derecha)
+        t = ((x - minx) / max(1, maxx - minx) + (y - miny) / max(1, maxy - miny)) / 2
+        base = 150 - 50 * t + (l - 60) * 0.18            # apenas se nota el dibujo original
+        if edge(px, w, h, x, y):
+            px[x, y] = steel(base * 0.42)                   # borde: el mismo acero, oscuro
+        elif edge(px, w, h, x, y - 1) or edge(px, w, h, x - 1, y):
+            px[x, y] = steel(base + 48)                     # brillo, adentro del borde de arriba y la izquierda
+        elif edge(px, w, h, x, y + 1) or edge(px, w, h, x + 1, y):
+            px[x, y] = steel(base - 34)                     # sombra, adentro del borde de abajo y la derecha
         else:
-            px[x, y] = gray(78 + l * 0.55)                                              # acero
+            px[x, y] = steel(base)
     return img
+
+
+def steel(v):
+    """Un gris acero, apenas azulado."""
+    v = max(0, min(255, int(v)))
+    return (v, v + 2 if v < 253 else v, min(255, v + 8), 255)
 
 
 # ------------------------------------------------------------------ el Condenado, dibujado a mano (16x16)
@@ -231,7 +245,7 @@ ESPADA = [
     '..KLMMDK........',
     '..KCKMMK........',
     '.KcHCKRMK.......',
-    'KRKCHK.KK.......',
+    'KRKCHK..........',
     'KRRK.K..........',
     '.KK.............',
 ]
@@ -242,16 +256,16 @@ PICO = [
     '.KWLLLMMMDDK....',
     '.KLMKKKKMMDDK...',
     '.KDK....KRMDDK..',
-    '..K....KCKMDDK..',
-    '......KcHKKMDK..',
-    '.....KCHK.KMDK..',
-    '....KcHK...KDK..',
-    '...KCHK....KDK..',
-    '..KcHK......KK..',
-    '.KCHK...........',
-    'KRHK............',
-    'KRK.............',
-    '.K..............',
+    '..K....KCKMDDDK.',
+    '......KcHKKRMDK.',
+    '.....KCHK..KMMLK',
+    '....KcHK....KMLK',
+    '...KCHK.....KMWK',
+    '..KcHK......KLWK',
+    '.KCHK.......KLWK',
+    'KRHK.......KMLWK',
+    'KRK........KLWK.',
+    '.K.........KKK..',
     '................',
 ]
 
