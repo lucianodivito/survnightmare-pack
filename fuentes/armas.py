@@ -1,9 +1,9 @@
 """
 Las armas especiales con su propia textura (terror:<arma>): parten de las del juego (la misma forma, así se reconocen)
 y las rehacen, para que se distingan de una común a la distancia.
-- Condenado: acero negro con el filo en brasa y una veta roja; el mango envuelto en cadena; púas en el borde.
-  El arco: madera negra, cuerda roja, púas en las puntas.
-- Armadura del Condenado: placas negras con bordes y costuras rojas, y una runa en el ícono; también puesta.
+- Condenado (espada, pico, hacha, pala): hierro forjado y hueso, en blanco, gris y negro: el filo casi blanco, el
+  contorno negro, púas negras y el mango a rayas blancas y negras. El arco: madera negra, cuerda blanca, púas en las puntas.
+- Armadura del Condenado: el traje del preso, a rayas horizontales blancas y negras; también puesta.
 - Ballesta del Vigía: madera quemada, metal oxidado con bordes vivos y remaches.
 - Mazo de la Luna Roja: la cabeza rojo sangre, con púas y gotas que caen.
 - Lanza del Umbral: negra violácea, con el borde violeta y una grieta de alma en el medio.
@@ -75,7 +75,14 @@ def spikes(img, mask, color, every=4, away=None):
         px[p] = color
 
 
+def gray(v):
+    v = max(0, min(255, int(v)))
+    return (v, v, v + (3 if v < 250 else 0), 255)
+
+
 def condenado_herramienta(img):
+    """Hierro forjado y hueso: blanco del lado iluminado, gris en el medio, contorno negro; púas negras y el mango
+    envuelto en cadena gris oscura. Nada de rojo: blanco, gris y negro (y bien claro, así no parece netherita)."""
     px = img.load()
     w, h = img.size
     orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
@@ -84,20 +91,20 @@ def condenado_herramienta(img):
     for (x, y) in metal:
         l = lum(orig[(x, y)])
         if lit(px, w, h, x, y):
-            px[x, y] = clamp(205, 40, 48, 255)                                           # filo en brasa (de un lado)
-        elif l > 200:
-            px[x, y] = clamp(150, 26, 34, 255)                                           # veta roja del medio
+            px[x, y] = gray(238)                                                        # el filo, casi blanco
+        elif edge(px, w, h, x, y):
+            px[x, y] = gray(30)                                                         # contorno negro
         else:
-            k = l * 0.3 + 22
-            px[x, y] = clamp(k, k, k + 6, 255)                                           # acero negro
-    for (x, y) in handle:                                                                # mango: cadena
-        px[x, y] = clamp(150, 150, 160, 255) if (x + y) % 2 == 0 else clamp(56, 56, 64, 255)
-    spikes(img, metal, clamp(46, 44, 52, 255), 3,
+            px[x, y] = gray(95 + (l - 60) * 0.7)                                         # gris
+    for (x, y) in handle:                                                               # mango: a rayas, de preso
+        px[x, y] = gray(225) if (x + y) % 4 < 2 else gray(32)
+    spikes(img, metal, gray(28), 3,
            away=lambda nx, ny: all(abs(nx - hx) + abs(ny - hy) > 2 for hx, hy in handle))
     return img
 
 
 def condenado_arco(img):
+    """Madera negra, cuerda blanca y púas negras en las puntas."""
     px = img.load()
     w, h = img.size
     orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
@@ -107,17 +114,13 @@ def condenado_arco(img):
             continue
         l = lum(c)
         if (x, y) in wood:
-            if edge(px, w, h, x, y) and hashed(x, y, 3):
-                px[x, y] = clamp(200, 38, 46, 255)
-            else:
-                px[x, y] = clamp(l * 0.3 + 18, l * 0.25 + 14, l * 0.25 + 16, 255)        # madera negra
+            px[x, y] = gray(150) if lit(px, w, h, x, y) and hashed(x, y, 2) else gray(l * 0.3 + 22)
         elif is_gray(c) and l > 120:
-            px[x, y] = clamp(190, 30, 40, 255)                                           # cuerda roja
+            px[x, y] = gray(232)                                                        # cuerda blanca
         elif is_gray(c):
-            k = l * 0.6
-            px[x, y] = clamp(k, k, k + 6, 255)
-    tips = {(x, y) for (x, y) in wood if y < 4 or y > 11 or x > 11}                     # púas en las puntas
-    spikes(img, tips, clamp(46, 44, 52, 255), 2)
+            px[x, y] = gray(l * 0.6)
+    tips = {(x, y) for (x, y) in wood if y < 4 or y > 11 or x > 11}
+    spikes(img, tips, gray(28), 2)
     return img
 
 
@@ -180,25 +183,23 @@ def umbral(img):
 
 
 def armadura(img):
+    """El traje del preso: rayas horizontales blancas y negras, con bordes negros (no se confunde ni con la netherita
+    ni con el hierro)."""
     px = img.load()
     w, h = img.size
     orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
     pts = [p for p, c in orig.items() if c[3]]
     if not pts:
         return img
-    cx = sum(p[0] for p in pts) / len(pts)
-    cy = sum(p[1] for p in pts) / len(pts)
     for (x, y) in pts:
         l = lum(orig[(x, y)])
+        band = 2 if w <= 16 else 2                                                      # el ancho de cada raya
         if edge(px, w, h, x, y):
-            px[x, y] = clamp(190, 30, 40, 255) if l > 40 else clamp(110, 16, 24, 255)   # bordes rojos
-        elif w <= 16 and ((round(x - cx) == 0 and abs(y - cy) <= 1.5) or (round(y - cy) == 0 and abs(x - cx) <= 1.5)):
-            px[x, y] = clamp(235, 70, 60, 255)                                           # la runa, en los íconos
-        elif l > 105:
-            px[x, y] = clamp(160, 26, 34, 255)                                           # costuras
+            px[x, y] = gray(26)                                                         # bordes negros
+        elif (y // band) % 2 == 0:
+            px[x, y] = gray(min(240, 200 + l * 0.25))                                   # raya blanca
         else:
-            k = l * 0.45 + 8
-            px[x, y] = clamp(k, k * 0.95, k + 3, 255)
+            px[x, y] = gray(30 + l * 0.12)                                              # raya negra
     return img
 
 
@@ -207,6 +208,7 @@ ARMAS = [
     ('espada_condenado', 'diamond_sword', condenado_herramienta),
     ('pico_condenado', 'diamond_pickaxe', condenado_herramienta),
     ('hacha_condenado', 'diamond_axe', condenado_herramienta),
+    ('pala_condenado', 'diamond_shovel', condenado_herramienta),
     ('arco_condenado', 'bow', condenado_arco),
     ('ballesta_vigia', 'crossbow', vigia),
     ('mazo_luna_roja', 'mace', luna_roja),
