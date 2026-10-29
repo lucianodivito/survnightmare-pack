@@ -1,9 +1,9 @@
 """
 Las armas especiales con su propia textura (terror:<arma>): parten de las del juego (la misma forma, así se reconocen)
 y las rehacen, para que se distingan de una común a la distancia.
-- Condenado (espada, pico, hacha, pala): hierro forjado y hueso, en blanco, gris y negro: el filo casi blanco, el
-  contorno negro, púas negras y el mango a rayas blancas y negras. El arco: madera negra, cuerda blanca, púas en las puntas.
-- Armadura del Condenado: el traje del preso, a rayas horizontales blancas y negras; también puesta.
+- Condenado (espada, pico, hacha, pala): dibujados a mano en hierro forjado (filo claro, acero, sombra, remaches) con
+  el mango de cuero envuelto en cadena. El arco: madera negra y cuerda blanca.
+- Armadura del Condenado: placas de acero gris con borde claro, contorno negro y remaches; también puesta.
 - Ballesta del Vigía: madera quemada, metal oxidado con bordes vivos y remaches.
 - Mazo de la Luna Roja: la cabeza rojo sangre, con púas y gotas que caen.
 - Lanza del Umbral: negra violácea, con el borde violeta y una grieta de alma en el medio.
@@ -119,8 +119,6 @@ def condenado_arco(img):
             px[x, y] = gray(232)                                                        # cuerda blanca
         elif is_gray(c):
             px[x, y] = gray(l * 0.6)
-    tips = {(x, y) for (x, y) in wood if y < 4 or y > 11 or x > 11}
-    spikes(img, tips, gray(28), 2)
     return img
 
 
@@ -183,32 +181,129 @@ def umbral(img):
 
 
 def armadura(img):
-    """El traje del preso: rayas horizontales blancas y negras, con bordes negros (no se confunde ni con la netherita
-    ni con el hierro)."""
+    """Hierro forjado: placas de acero gris, el borde de arriba claro, contorno negro y remaches."""
     px = img.load()
     w, h = img.size
     orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
     pts = [p for p, c in orig.items() if c[3]]
-    if not pts:
-        return img
     for (x, y) in pts:
         l = lum(orig[(x, y)])
-        band = 2 if w <= 16 else 2                                                      # el ancho de cada raya
-        if edge(px, w, h, x, y):
-            px[x, y] = gray(26)                                                         # bordes negros
-        elif (y // band) % 2 == 0:
-            px[x, y] = gray(min(240, 200 + l * 0.25))                                   # raya blanca
+        if lit(px, w, h, x, y) and edge(px, w, h, x, y):
+            px[x, y] = gray(206)                                                        # borde de arriba, claro
+        elif edge(px, w, h, x, y):
+            px[x, y] = gray(24)                                                         # contorno negro
+        elif hashed(x, y, 7):
+            px[x, y] = gray(196)                                                        # remaches
         else:
-            px[x, y] = gray(30 + l * 0.12)                                              # raya negra
+            px[x, y] = gray(78 + l * 0.55)                                              # acero
     return img
+
+
+# ------------------------------------------------------------------ el Condenado, dibujado a mano (16x16)
+# Hierro forjado: K contorno, D sombra, M acero, L acero claro, W filo, R remache; el mango de cuero (H, h) con
+# eslabones de cadena (C, c).
+CON = {'K': (20, 20, 24, 255), 'D': (54, 54, 60, 255), 'M': (96, 96, 104, 255), 'L': (150, 150, 158, 255),
+       'W': (222, 222, 228, 255), 'R': (190, 190, 196, 255), 'H': (52, 40, 34, 255), 'h': (84, 66, 54, 255),
+       'C': (168, 168, 176, 255), 'c': (88, 88, 96, 255)}
+
+
+def sprite(rows):
+    img = Image.new('RGBA', (16, 16), (0, 0, 0, 0))
+    for y, row in enumerate(rows):
+        assert len(row) == 16, (y, row)
+        for x, ch in enumerate(row):
+            if ch in CON:
+                img.putpixel((x, y), CON[ch])
+    return img
+
+
+ESPADA = [
+    '............KKK.',
+    '...........KWWLK',
+    '..........KWLLDK',
+    '.........KWLMDK.',
+    '........KWLMDK..',
+    '.......KWLMDK...',
+    '......KWLMDK....',
+    '..KK.KWLMDK.....',
+    '.KRMKWLMDK......',
+    '.KMLWLMDK.......',
+    '..KLMMDK........',
+    '..KCKMMK........',
+    '.KcHCKRMK.......',
+    'KRKCHK.KK.......',
+    'KRRK.K..........',
+    '.KK.............',
+]
+
+PICO = [
+    '...KKKKKK.......',
+    '..KWWWWLLKK.....',
+    '.KWLLLMMMDDK....',
+    '.KLMKKKKMMDDK...',
+    '.KDK....KRMDDK..',
+    '..K....KCKMDDK..',
+    '......KcHKKMDK..',
+    '.....KCHK.KMDK..',
+    '....KcHK...KDK..',
+    '...KCHK....KDK..',
+    '..KcHK......KK..',
+    '.KCHK...........',
+    'KRHK............',
+    'KRK.............',
+    '.K..............',
+    '................',
+]
+
+HACHA = [
+    '.....KKKK.......',
+    '....KWWLLK......',
+    '...KWLLMMDK.....',
+    '...KWLMMMDDK....',
+    '...KWLMMRKDK....',
+    '...KLMMDKCHK....',
+    '....KDDKcHK.....',
+    '.....KKCHK......',
+    '......KcHK......',
+    '.....KCHK.......',
+    '....KcHK........',
+    '...KCHK.........',
+    '..KcHK..........',
+    '.KRHK...........',
+    'KRRK............',
+    '.KK.............',
+]
+
+PALA = [
+    '..........KKK...',
+    '.........KWWLK..',
+    '........KWLLMDK.',
+    '........KWLMMDK.',
+    '........KLMMDDK.',
+    '.........KMDDK..',
+    '........KRKKK...',
+    '.......KCHK.....',
+    '......KcHK......',
+    '.....KCHK.......',
+    '....KcHK........',
+    '...KCHK.........',
+    '..KcHK..........',
+    '.KRHK...........',
+    'KRRK............',
+    '.KK.............',
+]
+
+
+def dibujo(rows):
+    return lambda img: sprite(rows)
 
 
 # (nombre del ítem nuevo, ítem del juego del que parte, paleta)
 ARMAS = [
-    ('espada_condenado', 'diamond_sword', condenado_herramienta),
-    ('pico_condenado', 'diamond_pickaxe', condenado_herramienta),
-    ('hacha_condenado', 'diamond_axe', condenado_herramienta),
-    ('pala_condenado', 'diamond_shovel', condenado_herramienta),
+    ('espada_condenado', 'diamond_sword', dibujo(ESPADA)),
+    ('pico_condenado', 'diamond_pickaxe', dibujo(PICO)),
+    ('hacha_condenado', 'diamond_axe', dibujo(HACHA)),
+    ('pala_condenado', 'diamond_shovel', dibujo(PALA)),
     ('arco_condenado', 'bow', condenado_arco),
     ('ballesta_vigia', 'crossbow', vigia),
     ('mazo_luna_roja', 'mace', luna_roja),
