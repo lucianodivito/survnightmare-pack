@@ -90,3 +90,9 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | `jefes/reflejo/golpe1.ogg` | glass-shattering-hit_01.ogg | C_Rogers | https://freesound.org/people/C_Rogers/sounds/203368/ |
 | `jefes/reflejo/cae1.ogg` | glass - singing wine glass - full 01.wav | Anthousai | https://freesound.org/people/Anthousai/sounds/447779/ |
 | `jefes/reflejo/muerte1.ogg` | Slow Motion Glass Shatter | bevibeldesign | https://freesound.org/people/bevibeldesign/sounds/349905/ |
+
+## Texturas
+
+| Uso | Pack | Autor | Licencia |
+|---|---|---|---|
+| Herramientas y armadura del Condenado (`item/*_condenado`, `entity/equipment/*/condenado.png`) | [Dark Iron](https://modrinth.com/resourcepack/dark-iron-tools-and-armor) 1.5 | Drift007_ | MIT |

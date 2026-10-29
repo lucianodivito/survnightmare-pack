@@ -1,9 +1,9 @@
 """
 Las armas especiales con su propia textura (terror:<arma>): parten de las del juego (la misma forma, así se reconocen)
 y las rehacen, para que se distingan de una común a la distancia.
-- Condenado (espada, pico, hacha, pala): dibujados a mano en hierro forjado (filo claro, acero, sombra, remaches) con
-  el mango de cuero envuelto en cadena. El arco: madera negra y cuerda blanca.
-- Armadura del Condenado: diseño propio, en fuentes/condenado_armadura.py.
+- Condenado (espada, pico, hacha, pala y la armadura, también puesta): las de "Dark Iron", de Drift007_ (MIT,
+  https://modrinth.com/resourcepack/dark-iron-tools-and-armor), en fuentes/dark_iron/. El arco: madera negra y cuerda
+  blanca.
 - Ballesta del Vigía: madera quemada, metal oxidado con bordes vivos y remaches.
 - Mazo de la Luna Roja: la cabeza rojo sangre, con púas y gotas que caen.
 - Lanza del Umbral: negra violácea, con el borde violeta y una grieta de alma en el medio.
@@ -303,19 +303,27 @@ def dibujo(rows):
 
 
 # (nombre del ítem nuevo, ítem del juego del que parte, paleta)
+DARK = os.path.join(ROOT, 'fuentes', 'dark_iron')
+
+
+def dark(name):
+    """Una textura de "Dark Iron" (Drift007_, MIT): fuentes/dark_iron/."""
+    return lambda img: Image.open(os.path.join(DARK, name + '.png')).convert('RGBA')
+
+
 ARMAS = [
-    ('espada_condenado', 'diamond_sword', dibujo(ESPADA)),
-    ('pico_condenado', 'diamond_pickaxe', dibujo(PICO)),
-    ('hacha_condenado', 'diamond_axe', dibujo(HACHA)),
-    ('pala_condenado', 'diamond_shovel', dibujo(PALA)),
+    ('espada_condenado', 'iron_sword', dark('iron_sword')),
+    ('pico_condenado', 'iron_pickaxe', dark('iron_pickaxe')),
+    ('hacha_condenado', 'iron_axe', dark('iron_axe')),
+    ('pala_condenado', 'iron_shovel', dark('iron_shovel')),
     ('arco_condenado', 'bow', condenado_arco),
     ('ballesta_vigia', 'crossbow', vigia),
     ('mazo_luna_roja', 'mace', luna_roja),
     ('lanza_umbral', 'netherite_spear', umbral),
-    ('yelmo_condenado', 'netherite_helmet', armadura),
-    ('peto_condenado', 'netherite_chestplate', armadura),
-    ('grebas_condenado', 'netherite_leggings', armadura),
-    ('botas_condenado', 'netherite_boots', armadura),
+    ('yelmo_condenado', 'netherite_helmet', dark('iron_helmet')),
+    ('peto_condenado', 'netherite_chestplate', dark('iron_chestplate')),
+    ('grebas_condenado', 'netherite_leggings', dark('iron_leggings')),
+    ('botas_condenado', 'netherite_boots', dark('iron_boots')),
 ]
 
 
@@ -371,12 +379,14 @@ for out, base, palette in ARMAS:
         write_json('models/item/%s.json' % new, model)
     print(out)
 
-# La armadura del Condenado (puesta y los íconos) tiene su propio diseño: fuentes/condenado_armadura.py (se corre
-# acá al final, así pisa los íconos que salieron de la netherita). El "equipment" que la viste:
+# La armadura del Condenado (puesta y los íconos) y sus herramientas son las de "Dark Iron" (Drift007_, MIT). El
+# "equipment" que la viste:
 write_json('equipment/condenado.json', {'layers': {
     'humanoid': [{'texture': 'terror:condenado'}], 'humanoid_leggings': [{'texture': 'terror:condenado'}]}})
-import subprocess
-subprocess.run([sys.executable, os.path.join(ROOT, 'fuentes', 'condenado_armadura.py')], check=True)
+for layer in ('humanoid', 'humanoid_leggings'):   # puesta: la de Dark Iron
+    path = os.path.join(A, 'textures', 'entity', 'equipment', layer, 'condenado.png')
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    Image.open(os.path.join(DARK, layer + '.png')).convert('RGBA').save(path)
 
 if len(sys.argv) > 2 and previews:
     view = Image.new('RGBA', (17 * len(previews), 16), (60, 60, 60, 255))

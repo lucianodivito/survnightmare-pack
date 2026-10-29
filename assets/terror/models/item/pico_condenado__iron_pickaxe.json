@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "terror:item/espada_condenado__diamond_sword"
+    "layer0": "terror:item/pico_condenado__iron_pickaxe"
   }
 }

@@ -1,0 +1,2 @@
+Texturas de "Dark Iron" 1.5, de Drift007_ (https://modrinth.com/resourcepack/dark-iron-tools-and-armor), licencia MIT.
+Se usan para las herramientas y la armadura del Condenado (fuentes/armas.py).
