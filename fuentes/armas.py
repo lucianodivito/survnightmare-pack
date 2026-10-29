@@ -3,7 +3,7 @@ Las armas especiales con su propia textura (terror:<arma>): parten de las del ju
 y las rehacen, para que se distingan de una común a la distancia.
 - Condenado (espada, pico, hacha, pala): dibujados a mano en hierro forjado (filo claro, acero, sombra, remaches) con
   el mango de cuero envuelto en cadena. El arco: madera negra y cuerda blanca.
-- Armadura del Condenado: acero pavonado (la de netherita, con su sombreado, en gris azulado intermedio); también puesta.
+- Armadura del Condenado: diseño propio, en fuentes/condenado_armadura.py.
 - Ballesta del Vigía: madera quemada, metal oxidado con bordes vivos y remaches.
 - Mazo de la Luna Roja: la cabeza rojo sangre, con púas y gotas que caen.
 - Lanza del Umbral: negra violácea, con el borde violeta y una grieta de alma en el medio.
@@ -371,109 +371,12 @@ for out, base, palette in ARMAS:
         write_json('models/item/%s.json' % new, model)
     print(out)
 
-# La armadura puesta: su propio "equipment" (el ítem lo usa con equippable asset_id terror:condenado)
-for layer in ('humanoid', 'humanoid_leggings'):
-    img = recolor('assets/minecraft/textures/entity/equipment/%s/netherite.png' % layer, armadura)
-    path = os.path.join(A, 'textures', 'entity', 'equipment', layer, 'condenado.png')
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    img.save(path)
+# La armadura del Condenado (puesta y los íconos) tiene su propio diseño: fuentes/condenado_armadura.py (se corre
+# acá al final, así pisa los íconos que salieron de la netherita). El "equipment" que la viste:
 write_json('equipment/condenado.json', {'layers': {
     'humanoid': [{'texture': 'terror:condenado'}], 'humanoid_leggings': [{'texture': 'terror:condenado'}]}})
-print('equipment condenado')
-
-# ------------------------------------------------------------------ los detalles del Condenado
-# Encima del acero pavonado: una cadena cruzada en el pecho (adelante y atrás), grilletes en muñecas y tobillos (una
-# banda de hierro oscuro con un remache), y una banda remachada en la frente del casco. Las mismas cosas, en chico, en
-# los íconos. Coordenadas: la plantilla de la armadura es la misma que la de una skin (64x32).
-LINK = (232, 236, 246, 255)      # eslabón (brillo)
-LINK_D = (26, 28, 36, 255)       # eslabón (sombra)
-BAND = (34, 38, 48, 255)         # hierro del grillete
-BAND_L = (78, 84, 100, 255)
-RIVET = (214, 222, 236, 255)
-
-
-def put(img, x, y, c):
-    if 0 <= x < img.width and 0 <= y < img.height and img.getpixel((x, y))[3]:
-        img.putpixel((x, y), c)
-
-
-def chain(img, x0, y0, x1, y1):
-    """Una cadena en diagonal, de dos píxeles de ancho: eslabones que alternan brillo y sombra."""
-    n = max(abs(x1 - x0), abs(y1 - y0))
-    for i in range(n + 1):
-        x = round(x0 + (x1 - x0) * i / n)
-        y = round(y0 + (y1 - y0) * i / n)
-        put(img, x, y, LINK if i % 2 == 0 else LINK_D)
-        put(img, x + 1, y, LINK_D if i % 2 == 0 else LINK)
-
-
-def band(img, x0, x1, y, rivets=()):
-    """Un grillete: dos filas de hierro (la de arriba más clara) y algún remache."""
-    for x in range(x0, x1):
-        put(img, x, y, BAND_L)
-        put(img, x, y + 1, BAND)
-    for x in rivets:
-        put(img, x, y + 1, RIVET)
-
-
-def cuff(img, x0, x1, top):
-    """Un grillete al final de la manga: en cada columna, en las dos últimas filas que tienen armadura."""
-    for x in range(x0, x1):
-        bottom = max((y for y in range(top, img.height) if img.getpixel((x, y))[3]), default=None)
-        if bottom is None or bottom - top < 2:
-            continue
-        img.putpixel((x, bottom - 1), BAND_L)
-        img.putpixel((x, bottom), RIVET if x % 4 == 1 else BAND)
-
-
-def detalles_puesta(img, layer):
-    if layer == 'humanoid':
-        chain(img, 20, 20, 27, 31)                     # pecho: del hombro a la cadera
-        chain(img, 39, 20, 32, 31)                     # espalda: cruzada al revés
-        cuff(img, 40, 56, 20)                          # grilletes al final de la manga (todo alrededor del brazo)
-        band(img, 0, 16, 28, (5, 13))                  # grilletes en los tobillos (botas)
-        for x in (9, 11, 12, 14):                       # casco: banda remachada en la frente
-            put(img, x, 8, BAND_L)
-        for x in (10, 13):
-            put(img, x, 8, RIVET)
-    else:
-        band(img, 0, 16, 25, (5, 13))                  # grebas: un grillete arriba de la rodilla
-    return img
-
-
-def detalles_icono(img, name):
-    if name == 'peto_condenado':
-        chain(img, 4, 3, 11, 13)
-    elif name == 'botas_condenado':
-        for x in range(16):
-            for y in (9, 10):
-                c = img.getpixel((x, y))
-                if c[3]:
-                    img.putpixel((x, y), BAND_L if y == 9 else BAND)
-        put(img, 3, 10, RIVET)
-        put(img, 12, 10, RIVET)
-    elif name == 'grebas_condenado':
-        for x in range(16):
-            c = img.getpixel((x, 9))
-            if c[3]:
-                img.putpixel((x, 9), BAND)
-        put(img, 4, 9, RIVET)
-        put(img, 11, 9, RIVET)
-    elif name == 'yelmo_condenado':
-        for x in (5, 7, 8, 10):
-            put(img, x, 4, BAND_L)
-        for x in (6, 9):
-            put(img, x, 4, RIVET)
-    return img
-
-
-for layer in ('humanoid', 'humanoid_leggings'):
-    path = os.path.join(A, 'textures', 'entity', 'equipment', layer, 'condenado.png')
-    detalles_puesta(Image.open(path).convert('RGBA'), layer).save(path)
-for name in ('yelmo_condenado', 'peto_condenado', 'grebas_condenado', 'botas_condenado'):
-    path = os.path.join(A, 'textures', 'item', name + '.png')
-    detalles_icono(Image.open(path).convert('RGBA'), name).save(path)
-print('detalles del Condenado')
+import subprocess
+subprocess.run([sys.executable, os.path.join(ROOT, 'fuentes', 'condenado_armadura.py')], check=True)
 
 if len(sys.argv) > 2 and previews:
     view = Image.new('RGBA', (17 * len(previews), 16), (60, 60, 60, 255))
