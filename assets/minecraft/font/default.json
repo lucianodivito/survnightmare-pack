@@ -6,7 +6,7 @@
       "ascent": 7,
       "height": 8,
       "chars": [
-        "\u2726"
+        "✦"
       ]
     },
     {
@@ -15,7 +15,7 @@
       "ascent": 7,
       "height": 8,
       "chars": [
-        "\u26c3"
+        "⛃"
       ]
     },
     {
@@ -24,7 +24,7 @@
       "ascent": 7,
       "height": 8,
       "chars": [
-        "\u265b"
+        "♛"
       ]
     },
     {
@@ -33,7 +33,16 @@
       "ascent": 7,
       "height": 8,
       "chars": [
-        "\u2620"
+        "☠"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:font/logo.png",
+      "ascent": 7,
+      "height": 32,
+      "chars": [
+        ""
       ]
     }
   ]
