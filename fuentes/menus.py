@@ -54,7 +54,7 @@ MENUS = {
     'proteccion': ('', [([11, 12, 13, 14, 15], None), ([29, 30, 31, 32, 33], CELESTE)]
                    + nav(45, 47, 49, 51)),
     'encargos': ('', [([4], None), ([20], None), ([22], None), ([24], None)] + nav(49)),
-    'destilador': ('', [([13], VERDE), ([29], None), ([31], None), ([33], None)] + nav(49)),
+    'destilador': ('', [([11], VERDE), ([15], DORADO), ([28, 29, 30], None), ([32, 33, 34], None)] + nav(49)),
     'tienda': ('', [([4], DORADO), ([20, 21, 22, 23, 24, 31], None)] + nav(49, 51)),
     # Acá la fila 4 está llena: los botones de abajo van sin panel (si no, se pisarían)
     'tienda_items': ('', [([4], DORADO), ([r * 9 + c for r in range(1, 5) for c in range(1, 8)], None),
