@@ -208,8 +208,17 @@ font = {'providers': [
 js = os.path.join(ROOT, 'assets', 'terror', 'font', 'sangre.json')
 with open(js, 'w', encoding='utf-8', newline='\n') as f:
     json.dump(font, f, indent=2)
+# La misma letra al doble (terror:sangre_grande), para el nombre del server arriba del tab
+big = {'providers': [
+    {'type': 'space', 'advances': {' ': 10}},
+    {'type': 'bitmap', 'file': 'terror:font/sangre.png', 'height': H, 'ascent': 18, 'chars': ROWS},
+]}
+js_big = os.path.join(ROOT, 'assets', 'terror', 'font', 'sangre_grande.json')
+with open(js_big, 'w', encoding='utf-8', newline='\n') as f:
+    json.dump(big, f, indent=2)
 print(tex)
 print(js)
+print(js_big)
 
 if len(sys.argv) > 2:   # vista previa: el abecedario grande sobre piedra oscura
     scale = 4
