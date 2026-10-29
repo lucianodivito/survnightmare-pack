@@ -62,6 +62,10 @@ MENUS = {
 }
 MENUS['kits'] = ('\ue016', [([13], None),
                             ([28, 29, 30, 31, 32, 33, 34], (104, 84, 146))] + nav(45, 49))
+MENUS['caja_ruleta'] = ('\ue017', [([18, 19, 20, 21, 22, 23, 24, 25, 26], None)])
+MENUS['caja_lista'] = ('\ue018', [([20], None), ([22], None), ([24], None)] + nav(49))
+MENUS['caja_premios'] = ('\ue019', [([4], None), ([r * 9 + c for r in range(1, 5) for c in range(9)], None),
+                                     ([45], 'suelto'), ([49], 'suelto')])
 for n in range(1, 8):
     MENUS['ascension_%d' % n] = (chr(0xE020 + n), ability(n, False, VIOLETA, nav(49, 53)))
     MENUS['etapa_%d' % n] = (chr(0xE030 + n), ability(n, True, VIOLETA, nav(45, 49, 53)))
@@ -170,6 +174,12 @@ def frame(name, groups):
     for slots, _ in groups:
         for s in slots:
             draw_slot(px, *slot_xy(s))
+    if name == 'caja_ruleta':
+        cx = GX + 4 * 18 + 9
+        for d in range(5):
+            for x in range(cx - 5 + d, cx + 5 - d):
+                px[x, GY + 2 * 18 - 8 + d] = BLOOD + (255,)          # arriba, apuntando para abajo
+                px[x, GY + 3 * 18 + 7 - d] = BLOOD + (255,)          # abajo, apuntando para arriba
     # El inventario del jugador, como siempre
     for r in range(3):
         for c in range(9):

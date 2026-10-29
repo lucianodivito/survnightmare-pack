@@ -90,6 +90,33 @@
     },
     {
       "type": "bitmap",
+      "file": "terror:gui/menu_caja_ruleta.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue017"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_caja_lista.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue018"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_caja_premios.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue019"
+      ]
+    },
+    {
+      "type": "bitmap",
       "file": "terror:gui/menu_ascension_1.png",
       "ascent": 13,
       "height": 222,
