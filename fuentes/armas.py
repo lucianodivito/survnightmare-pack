@@ -1,10 +1,12 @@
 """
 Las armas especiales con su propia textura (terror:<arma>): parten de las del juego (la misma forma, así se reconocen)
-y les cambian los colores de los detalles, para que se distingan de una común a la distancia.
-- Condenado (espada, pico, hacha, arco): el metal pasa a acero gris oscuro, con un brillo rojo en el filo.
-- Armadura del Condenado: la de netherita, más negra y con las costuras en rojo; también puesta (equipment).
-- Ballesta del Vigía: madera oscura y metal oxidado.   - Mazo de la Luna Roja: la cabeza, rojo sangre.
-- Lanza del Umbral: la netherita con reflejos violetas.
+y las rehacen, para que se distingan de una común a la distancia.
+- Condenado: acero negro con el filo en brasa y una veta roja; el mango envuelto en cadena; púas en el borde.
+  El arco: madera negra, cuerda roja, púas en las puntas.
+- Armadura del Condenado: placas negras con bordes y costuras rojas, y una runa en el ícono; también puesta.
+- Ballesta del Vigía: madera quemada, metal oxidado con bordes vivos y remaches.
+- Mazo de la Luna Roja: la cabeza rojo sangre, con púas y gotas que caen.
+- Lanza del Umbral: negra violácea, con el borde violeta y una grieta de alma en el medio.
 Copia también los modelos del juego que hagan falta (el arco tensándose, la ballesta cargada, la lanza en la mano).
 Uso: python fuentes/armas.py <cliente.jar de la versión> [vista.png]
 """
@@ -37,75 +39,175 @@ def is_gray(c):
     return hsv(c)[1] < 0.18
 
 
-# ------------------------------------------------------------------ las paletas
+# ------------------------------------------------------------------ los estilos (sobre la imagen entera)
 
-def condenado(c):
-    r, g, b, a = c
-    if a == 0:
-        return c
-    h, s, v = hsv(c)
-    l = lum(c)
-    if 0.38 < h < 0.62 and s > 0.15:            # el diamante: acero gris oscuro, el brillo en rojo
-        if l > 185:
-            return clamp(196, 44, 52, a)
-        k = l * 0.62
-        return clamp(k + 4, k + 4, k + 10, a)
-    if is_wood(c):                               # mango: madera ennegrecida
-        return clamp(r * 0.55, g * 0.5, b * 0.5, a)
-    if is_gray(c) and l > 150:                   # la cuerda del arco: roja
-        return clamp(150, 30, 38, a)
-    return c
+def opaque(px, w, h, x, y):
+    return 0 <= x < w and 0 <= y < h and px[x, y][3] > 0
 
 
-def armadura(c):
-    r, g, b, a = c
-    if a == 0:
-        return c
-    l = lum(c)
-    if l > 105:                                  # los brillos de la netherita: costuras rojas
-        return clamp(150 + (l - 105) * 0.4, 28, 36, a)
-    k = l * 0.7
-    return clamp(k + 3, k, k + 2, a)
+def edge(px, w, h, x, y):
+    """Si el píxel toca un lado vacío (es borde de la figura)."""
+    return any(not opaque(px, w, h, x + dx, y + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
 
 
-def vigia(c):
-    r, g, b, a = c
-    if a == 0:
-        return c
-    l = lum(c)
-    if is_wood(c):
-        return clamp(r * 0.62, g * 0.55, b * 0.5, a)
-    if is_gray(c) and 40 < l < 200:               # el metal: oxidado
-        return clamp(l * 1.15, l * 0.7, l * 0.42, a)
-    return c
+def lit(px, w, h, x, y):
+    """Borde del lado iluminado (arriba o a la derecha): ahí va el color; el otro lado queda oscuro."""
+    return not opaque(px, w, h, x, y - 1) or not opaque(px, w, h, x + 1, y)
 
 
-def luna_roja(c):
-    r, g, b, a = c
-    if a == 0:
-        return c
-    l = lum(c)
-    if is_gray(c):                                # la cabeza del mazo: rojo sangre
-        return clamp(l * 0.95 + 25, l * 0.22, l * 0.24, a)
-    return c
+def hashed(x, y, n):
+    return (x * 7 + y * 13 + x * y) % n == 0
 
 
-def umbral(c):
-    r, g, b, a = c
-    if a == 0:
-        return c
-    l = lum(c)
-    if l > 95:                                   # los brillos: violeta de grieta
-        return clamp(l * 0.8 + 20, l * 0.55 + 10, l * 1.05 + 30, a)
-    return clamp(r * 0.9 + 6, g * 0.85, b * 0.95 + 14, a)
+def spikes(img, mask, color, every=4, away=None):
+    """Púas: desde el borde de {mask}, un píxel hacia afuera (a lo vacío), cada tanto."""
+    px = img.load()
+    w, h = img.size
+    out = []
+    for (x, y) in mask:
+        for dx, dy in ((1, 0), (-1, 0), (0, -1), (0, 1)):
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < w and 0 <= ny < h and px[nx, ny][3] == 0 and hashed(nx, ny, every):
+                if away and not away(nx, ny):
+                    continue
+                out.append((nx, ny))
+    for p in out:
+        px[p] = color
+
+
+def condenado_herramienta(img):
+    px = img.load()
+    w, h = img.size
+    orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
+    metal = {p for p, c in orig.items() if c[3] and 0.38 < hsv(c)[0] < 0.62 and hsv(c)[1] > 0.15}
+    handle = {p for p, c in orig.items() if c[3] and is_wood(c)}
+    for (x, y) in metal:
+        l = lum(orig[(x, y)])
+        if lit(px, w, h, x, y):
+            px[x, y] = clamp(205, 40, 48, 255)                                           # filo en brasa (de un lado)
+        elif l > 200:
+            px[x, y] = clamp(150, 26, 34, 255)                                           # veta roja del medio
+        else:
+            k = l * 0.3 + 22
+            px[x, y] = clamp(k, k, k + 6, 255)                                           # acero negro
+    for (x, y) in handle:                                                                # mango: cadena
+        px[x, y] = clamp(150, 150, 160, 255) if (x + y) % 2 == 0 else clamp(56, 56, 64, 255)
+    spikes(img, metal, clamp(46, 44, 52, 255), 3,
+           away=lambda nx, ny: all(abs(nx - hx) + abs(ny - hy) > 2 for hx, hy in handle))
+    return img
+
+
+def condenado_arco(img):
+    px = img.load()
+    w, h = img.size
+    orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
+    wood = {p for p, c in orig.items() if c[3] and is_wood(c)}
+    for (x, y), c in orig.items():
+        if not c[3]:
+            continue
+        l = lum(c)
+        if (x, y) in wood:
+            if edge(px, w, h, x, y) and hashed(x, y, 3):
+                px[x, y] = clamp(200, 38, 46, 255)
+            else:
+                px[x, y] = clamp(l * 0.3 + 18, l * 0.25 + 14, l * 0.25 + 16, 255)        # madera negra
+        elif is_gray(c) and l > 120:
+            px[x, y] = clamp(190, 30, 40, 255)                                           # cuerda roja
+        elif is_gray(c):
+            k = l * 0.6
+            px[x, y] = clamp(k, k, k + 6, 255)
+    tips = {(x, y) for (x, y) in wood if y < 4 or y > 11 or x > 11}                     # púas en las puntas
+    spikes(img, tips, clamp(46, 44, 52, 255), 2)
+    return img
+
+
+def vigia(img):
+    px = img.load()
+    w, h = img.size
+    orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
+    for (x, y), c in orig.items():
+        if not c[3]:
+            continue
+        l = lum(c)
+        if is_wood(c):
+            px[x, y] = clamp(c[0] * 0.45, c[1] * 0.35, c[2] * 0.3, 255)                 # madera quemada
+        elif is_gray(c) and 40 < l < 210:
+            if lit(px, w, h, x, y) and hashed(x, y, 2):
+                px[x, y] = clamp(220, 120, 48, 255)                                      # algún borde de óxido vivo
+            elif hashed(x, y, 4):
+                px[x, y] = clamp(225, 205, 180, 255)                                     # remaches
+            else:
+                px[x, y] = clamp(l * 1.15, l * 0.6, l * 0.32, 255)                       # óxido
+    return img
+
+
+def luna_roja(img):
+    px = img.load()
+    w, h = img.size
+    orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
+    # La cabeza: arriba a la derecha (el mazo es todo del mismo gris azulado: se separa por la posición)
+    head = {(x, y) for (x, y), c in orig.items() if c[3] and (y <= 8 or (y <= 10 and x >= 8))}
+    for (x, y) in head:
+        l = lum(orig[(x, y)])
+        if edge(px, w, h, x, y):
+            px[x, y] = clamp(225, 40, 52, 255)
+        else:
+            px[x, y] = clamp(l * 0.55 + 50, 12, 20, 255)
+    spikes(img, head, clamp(70, 8, 14, 255), 2)
+    for (x, y) in sorted(head):                                                          # gotas que caen
+        if y + 1 < h and px[x, y + 1][3] == 0 and hashed(x, y, 3):
+            for i in range(1, 3):
+                if y + i < h and px[x, y + i][3] == 0:
+                    px[x, y + i] = clamp(170, 14, 24, 255) if i == 1 else clamp(110, 8, 16, 255)
+    return img
+
+
+def umbral(img):
+    px = img.load()
+    w, h = img.size
+    orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
+    for (x, y), c in orig.items():
+        if not c[3]:
+            continue
+        l = lum(c)
+        if lit(px, w, h, x, y) and l > 50:
+            px[x, y] = clamp(150, 104, 220, 255)                                         # borde violeta (de un lado)
+        elif l > 110:
+            px[x, y] = clamp(110, 220, 232, 255)                                         # la grieta de alma
+        else:
+            px[x, y] = clamp(l * 0.35 + 14, l * 0.2 + 6, l * 0.45 + 26, 255)              # negro violáceo
+    return img
+
+
+def armadura(img):
+    px = img.load()
+    w, h = img.size
+    orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
+    pts = [p for p, c in orig.items() if c[3]]
+    if not pts:
+        return img
+    cx = sum(p[0] for p in pts) / len(pts)
+    cy = sum(p[1] for p in pts) / len(pts)
+    for (x, y) in pts:
+        l = lum(orig[(x, y)])
+        if edge(px, w, h, x, y):
+            px[x, y] = clamp(190, 30, 40, 255) if l > 40 else clamp(110, 16, 24, 255)   # bordes rojos
+        elif w <= 16 and ((round(x - cx) == 0 and abs(y - cy) <= 1.5) or (round(y - cy) == 0 and abs(x - cx) <= 1.5)):
+            px[x, y] = clamp(235, 70, 60, 255)                                           # la runa, en los íconos
+        elif l > 105:
+            px[x, y] = clamp(160, 26, 34, 255)                                           # costuras
+        else:
+            k = l * 0.45 + 8
+            px[x, y] = clamp(k, k * 0.95, k + 3, 255)
+    return img
 
 
 # (nombre del ítem nuevo, ítem del juego del que parte, paleta)
 ARMAS = [
-    ('espada_condenado', 'diamond_sword', condenado),
-    ('pico_condenado', 'diamond_pickaxe', condenado),
-    ('hacha_condenado', 'diamond_axe', condenado),
-    ('arco_condenado', 'bow', condenado),
+    ('espada_condenado', 'diamond_sword', condenado_herramienta),
+    ('pico_condenado', 'diamond_pickaxe', condenado_herramienta),
+    ('hacha_condenado', 'diamond_axe', condenado_herramienta),
+    ('arco_condenado', 'bow', condenado_arco),
     ('ballesta_vigia', 'crossbow', vigia),
     ('mazo_luna_roja', 'mace', luna_roja),
     ('lanza_umbral', 'netherite_spear', umbral),
@@ -116,13 +218,8 @@ ARMAS = [
 ]
 
 
-def recolor(path, palette):
-    img = Image.open(io.BytesIO(JAR.read(path))).convert('RGBA')
-    px = img.load()
-    for y in range(img.height):
-        for x in range(img.width):
-            px[x, y] = palette(px[x, y])
-    return img
+def recolor(path, style):
+    return style(Image.open(io.BytesIO(JAR.read(path))).convert('RGBA'))
 
 
 def write_json(rel, data):
