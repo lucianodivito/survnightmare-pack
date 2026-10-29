@@ -1,5 +1,5 @@
 """
-Lo de abajo (jefe de El Mar quieto): skin de jugador de 64x64 (brazos anchos) para el maniquí del jefe, que el plugin
+El Fondo (jefe de El Mar quieto): skin de jugador de 64x64 (brazos anchos) para el maniquí del jefe, que el plugin
 agranda hasta unos seis bloques. Un ahogado hinchado: piel pálida verdosa con manchas y percebes, ojos blancos
 lechosos, la boca abierta y negra, pelo negro largo y mojado que le cae (en la capa de afuera), y ropa podrida.
 El plugin la usa con terror:entity/abajo (assets/terror/textures/entity/abajo.png).

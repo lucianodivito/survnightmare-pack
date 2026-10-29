@@ -1,5 +1,5 @@
 """
-El que baja (jefe de La Escalera): skin de jugador de 64x64 (brazos anchos). Una figura de porcelana blanca, como las
+El Peldañero (jefe de La Escalera): skin de jugador de 64x64 (brazos anchos). Una figura de porcelana blanca, como las
 escaleras de cuarzo: lisa, con rajaduras negras; la cara sin rasgos, salvo dos agujeros negros y una grieta que la
 cruza; una túnica blanca larga y las manos y los pies grises, de estatua. Al morir se rompe como vidrio.
 El plugin la usa con terror:entity/quebaja (assets/terror/textures/entity/quebaja.png).

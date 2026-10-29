@@ -1,5 +1,5 @@
 """
-El Caminante (jefe de El Campo de postes): skin de jugador de 64x64 (brazos anchos) para el maniquí del jefe, que el
+El Farolero (jefe de El Campo de postes): skin de jugador de 64x64 (brazos anchos) para el maniquí del jefe, que el
 plugin estira a casi tres bloques de alto. Sin cara: piel gris lisa, apenas una sombra donde irían los ojos; un abrigo
 largo y negro hasta las rodillas, sombrero de ala ancha (en la capa de afuera) y manos pálidas de dedos largos.
 El plugin la usa con terror:entity/caminante (assets/terror/textures/entity/caminante.png).

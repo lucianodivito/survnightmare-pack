@@ -88,14 +88,14 @@ CLIPS = [
     ('espanta.hoz', 'hoz1', 60024, 0.0, 0.8, GRAVE.format(f=0.9)),
     ('espanta.hoz', 'hoz2', 788990, 0.0, 0.8, GRAVE.format(f=0.8)),
     ('espanta.muerte', 'muerte1', 565911, 4.0, 6.0, GRAVE.format(f=0.7) + ',aecho=0.8:0.8:140:0.5,afade=t=out:st=3.5:d=2.5'),
-    # El Caminante: casi todo generado (graves, raros); solo el farol que revienta es grabado
+    # El Farolero: casi todo generado (graves, raros); solo el farol que revienta es grabado
     ('caminante.apagon', 'apagon1', 558969, 0.0, 1.2, GRAVE.format(f=0.8) + ',afade=t=out:st=0.9:d=0.3'),
     ('caminante.apagon', 'apagon2', 637658, 0.0, 1.0, GRAVE.format(f=0.75) + ',afade=t=out:st=0.7:d=0.3'),
     ('caminante.paso', 'paso1', 'boom', 0.0, 1.8, 'lowpass=f=300,aecho=0.8:0.9:400:0.4'),
     ('caminante.llega', 'llega1', 'llega', 0.0, 2.6, 'lowpass=f=180,lowpass=f=180,aecho=0.8:0.85:300:0.4'),
     ('caminante.golpe', 'golpe1', 'tajo', 0.0, 0.6, 'lowpass=f=260,lowpass=f=260,volume=2'),
     ('caminante.salto', 'salto1', 'salto', 0.0, 0.7, 'highpass=f=120,lowpass=f=900'),
-    # Lo que hay
+    # Nadie
     ('loquehay.grito', 'grito1', 587354, 0.0, 2.7, 'volume=1.6'),
     ('loquehay.chillido', 'chillido1', 725210, 0.0, 4.0, GRAVE.format(f=0.85) + ',aecho=0.8:0.8:120:0.4,afade=t=out:st=3.2:d=0.8'),
     # Graves, apagados y con eco largo: lejanos y monstruosos (cerca y nítidos sonaban a ASMR)
@@ -105,7 +105,7 @@ CLIPS = [
     ('loquehay.respira', 'respira1', 554307, 0.0, 3.0, GRAVE.format(f=0.45) + ',lowpass=f=700,aecho=0.8:0.85:250:0.5,afade=t=out:st=2.5:d=0.5'),
     ('loquehay.golpe', 'golpe1', 'zarpazo', 0.0, 0.7, 'lowpass=f=900'),
     ('loquehay.muerte', 'muerte1', 580320, 0.0, 8.0, GRAVE.format(f=0.6) + ',aecho=0.8:0.9:300:0.5,afade=t=out:st=5:d=3'),
-    # Lo de abajo
+    # El Fondo
     ('abajo.canto', 'canto1', 88449, 0.0, 5.5, GRAVE.format(f=0.7) + ',aecho=0.8:0.85:300:0.45,afade=t=out:st=4.5:d=1'),
     ('abajo.canto', 'canto2', 82325, 10.0, 7.0, GRAVE.format(f=0.75) + ',aecho=0.8:0.85:300:0.45,afade=t=in:d=0.8,afade=t=out:st=6:d=1'),
     ('abajo.burbujas', 'burbujas1', 529383, 0.0, 3.0, 'afade=t=in:d=0.3,afade=t=out:st=2.4:d=0.6'),
@@ -115,7 +115,7 @@ CLIPS = [
     ('abajo.golpe', 'golpe1', 545823, 0.0, 1.5, GRAVE.format(f=0.7) + ',afade=t=out:st=1.1:d=0.4'),
     ('abajo.arrastre', 'arrastre1', 529383, 10.0, 3.0, GRAVE.format(f=0.6) + ',lowpass=f=800,afade=t=in:d=0.3,afade=t=out:st=2.4:d=0.6'),
     ('abajo.muerte', 'muerte1', 88449, 0.0, 5.5, 'areverse,' + GRAVE.format(f=0.55) + ',aecho=0.8:0.9:400:0.5,afade=t=out:st=4:d=1.5'),
-    # El que baja (tu reflejo)
+    # El Peldañero (tu reflejo)
     ('reflejo.pasos', 'pasos1', 616615, 0.0, 4.0, 'afade=t=in:d=0.3,afade=t=out:st=3.4:d=0.6'),
     ('reflejo.pasos', 'pasos2', 616615, 4.0, 4.0, GRAVE.format(f=0.92) + ',afade=t=in:d=0.3,afade=t=out:st=3.4:d=0.6'),
     ('reflejo.vidrio', 'vidrio1', 447779, 0.5, 3.5, 'afade=t=in:d=0.6,afade=t=out:st=2.8:d=0.7'),

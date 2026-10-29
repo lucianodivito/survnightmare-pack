@@ -1,5 +1,5 @@
 """
-Lo que hay (jefe de La Nada): dos cosas.
+Nadie (jefe de La Nada): dos cosas.
 - Su skin (terror:entity/loquehay): un cuerpo negro casi puro, que en La Nada no se ve; flaco, de dedos largos. La cara
   es negra, sin boca: solo dos ojos, rendijas blancas con brillo rojo (es la cabeza del screamer).
 - Sus ojos (ítem terror:ojos, un plano que el plugin pone flotando a la altura de la cabeza, con brillo): dos puntos de
