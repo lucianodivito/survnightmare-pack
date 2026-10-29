@@ -98,11 +98,11 @@ CLIPS = [
     # Lo que hay
     ('loquehay.grito', 'grito1', 587354, 0.0, 2.7, 'volume=1.6'),
     ('loquehay.chillido', 'chillido1', 725210, 0.0, 4.0, GRAVE.format(f=0.85) + ',aecho=0.8:0.8:120:0.4,afade=t=out:st=3.2:d=0.8'),
-    ('loquehay.susurro', 'susurro1', 219597, 0.0, 3.5, 'aecho=0.8:0.8:80:0.4,afade=t=in:d=0.2,afade=t=out:st=3:d=0.5'),
-    ('loquehay.susurro', 'susurro2', 219597, 8.0, 3.5, GRAVE.format(f=0.9) + ',aecho=0.8:0.8:80:0.4,afade=t=in:d=0.2,afade=t=out:st=3:d=0.5'),
-    ('loquehay.susurro', 'susurro3', 316797, 0.0, 4.0, 'afade=t=in:d=0.3,afade=t=out:st=3.4:d=0.6'),
-    ('loquehay.respira', 'respira1', 554307, 0.0, 3.0, GRAVE.format(f=0.6) + ',lowpass=f=1800,afade=t=out:st=2.5:d=0.5'),
-    ('loquehay.ojos', 'ojos1', 'parpado', 0.0, 0.5, 'highpass=f=300,lowpass=f=4000'),
+    # Graves, apagados y con eco largo: lejanos y monstruosos (cerca y nítidos sonaban a ASMR)
+    ('loquehay.susurro', 'susurro1', 219597, 0.0, 3.5, GRAVE.format(f=0.6) + ',lowpass=f=1400,aecho=0.8:0.9:350:0.6,afade=t=in:d=0.3,afade=t=out:st=3:d=0.5'),
+    ('loquehay.susurro', 'susurro2', 219597, 8.0, 3.5, GRAVE.format(f=0.55) + ',lowpass=f=1200,aecho=0.8:0.9:450:0.6,afade=t=in:d=0.3,afade=t=out:st=3:d=0.5'),
+    ('loquehay.susurro', 'susurro3', 316797, 0.0, 4.0, 'areverse,' + GRAVE.format(f=0.6) + ',lowpass=f=1300,aecho=0.8:0.9:400:0.6,afade=t=in:d=0.3,afade=t=out:st=3.4:d=0.6'),
+    ('loquehay.respira', 'respira1', 554307, 0.0, 3.0, GRAVE.format(f=0.45) + ',lowpass=f=700,aecho=0.8:0.85:250:0.5,afade=t=out:st=2.5:d=0.5'),
     ('loquehay.golpe', 'golpe1', 'zarpazo', 0.0, 0.7, 'lowpass=f=900'),
     ('loquehay.muerte', 'muerte1', 580320, 0.0, 8.0, GRAVE.format(f=0.6) + ',aecho=0.8:0.9:300:0.5,afade=t=out:st=5:d=3'),
     # Lo de abajo

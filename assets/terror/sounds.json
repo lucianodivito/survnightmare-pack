@@ -420,14 +420,6 @@
     ],
     "subtitle": "terror.subtitulo.loquehay.respira"
   },
-  "loquehay.ojos": {
-    "sounds": [
-      {
-        "name": "terror:jefes/loquehay/ojos1"
-      }
-    ],
-    "subtitle": "terror.subtitulo.loquehay.ojos"
-  },
   "loquehay.golpe": {
     "sounds": [
       {
