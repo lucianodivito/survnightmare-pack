@@ -70,7 +70,8 @@ for rows in range(1, 6):
                                        + nav(45, 49, 53))
 MENUS['herrero'] = (chr(0xE01A), [([4], DORADO), ([r * 9 + c for r in range(1, 4) for c in range(1, 8)], None)] + nav(49, 51))
 MENUS['recompensas'] = (chr(0xE01B), [([4], DORADO), ([r * 9 + c for r in range(1, 5) for c in range(1, 8)], None)] + nav(49))
-MENUS['clan'] = (chr(0xE01C), [([4], DORADO), ([r * 9 + c for r in range(2, 4) for c in range(1, 8)], None)] + nav(45, 47, 49, 51, 53))
+MENUS['clan'] = (chr(0xE01C), [([2], None), ([4], DORADO), ([6], None), ([r * 9 + c for r in range(2, 4) for c in range(1, 8)], None)] + nav(47, 49, 51, 53))
+MENUS['clan_sin'] = (chr(0xE01D), [([4], DORADO), ([r * 9 + c for r in range(2, 4) for c in range(1, 8)], None)] + nav(47, 49))
 for n in range(1, 8):
     MENUS['ascension_%d' % n] = (chr(0xE020 + n), ability(n, False, VIOLETA, nav(49, 53)))
     MENUS['etapa_%d' % n] = (chr(0xE030 + n), ability(n, True, VIOLETA, nav(45, 49, 53)))
