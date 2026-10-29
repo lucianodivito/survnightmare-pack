@@ -171,6 +171,15 @@
     },
     {
       "type": "bitmap",
+      "file": "terror:gui/menu_clan.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue01c"
+      ]
+    },
+    {
+      "type": "bitmap",
       "file": "terror:gui/menu_ascension_1.png",
       "ascent": 13,
       "height": 222,
