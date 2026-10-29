@@ -56,6 +56,7 @@ SOURCES = {
 
 # Cada sonido: (evento, archivo, id de fuente, desde, duración, filtros de ffmpeg)
 GRAVE = 'asetrate=44100*{f},aresample=44100'
+FADE_OUT = 0.35   # segundos de fundido al final de cada sonido
 CLIPS = [
     # El Inquilino
     ('inquilino.puerta', 'puerta1', 346267, 0.0, 3.0, 'volume=1.4'),
@@ -187,7 +188,10 @@ def main():
         boss = event.split('.')[0]
         os.makedirs(os.path.join(out_dir, boss), exist_ok=True)
         out = os.path.join(out_dir, boss, name + '.ogg')
+        # Nunca un corte seco: un fundido al final (del sonido ya procesado, dure lo que dure: se da vuelta, se le hace
+        # la entrada y se vuelve a dar vuelta) y uno mínimo al principio, contra el clic
         filters += ',loudnorm=I=-20:TP=-1.5'   # todos con un volumen parejo
+        filters += ',afade=t=in:d=0.02,areverse,afade=t=in:d=' + str(FADE_OUT) + ',areverse'
         if sid in SYNTH:
             source = ['-f', 'lavfi', '-i', SYNTH[sid]]
         else:
