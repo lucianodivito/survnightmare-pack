@@ -108,11 +108,47 @@
     },
     {
       "type": "bitmap",
-      "file": "terror:gui/menu_caja_premios.png",
+      "file": "terror:gui/menu_caja_premios_1.png",
       "ascent": 13,
       "height": 222,
       "chars": [
-        "\ue019"
+        "\ue041"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_caja_premios_2.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue042"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_caja_premios_3.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue043"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_caja_premios_4.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue044"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_caja_premios_5.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue045"
       ]
     },
     {

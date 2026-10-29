@@ -64,8 +64,10 @@ MENUS['kits'] = ('\ue016', [([13], None),
                             ([28, 29, 30, 31, 32, 33, 34], (104, 84, 146))] + nav(45, 49))
 MENUS['caja_ruleta'] = ('\ue017', [([18, 19, 20, 21, 22, 23, 24, 25, 26], None)])
 MENUS['caja_lista'] = ('\ue018', [([20], None), ([22], None), ([24], None)] + nav(49))
-MENUS['caja_premios'] = ('\ue019', [([4], None), ([r * 9 + c for r in range(1, 5) for c in range(9)], None),
-                                     ([45], 'suelto'), ([49], 'suelto')])
+# Premios de una caja: un panel liso (sin casilleros) del alto justo, seg\u00fan cu\u00e1ntas filas de premios hay
+for rows in range(1, 6):
+    MENUS['caja_premios_%d' % rows] = (chr(0xE040 + rows), [([r * 9 + c for r in range(rows) for c in range(9)], 'liso')]
+                                       + nav(45, 49, 53))
 for n in range(1, 8):
     MENUS['ascension_%d' % n] = (chr(0xE020 + n), ability(n, False, VIOLETA, nav(49, 53)))
     MENUS['etapa_%d' % n] = (chr(0xE030 + n), ability(n, True, VIOLETA, nav(45, 49, 53)))
@@ -170,8 +172,10 @@ def frame(name, groups):
     noise(img, rnd)
     for slots, border in groups:
         if border != 'suelto':
-            draw_panel(px, rnd, slots, border)
-    for slots, _ in groups:
+            draw_panel(px, rnd, slots, None if border == 'liso' else border)
+    for slots, border in groups:
+        if border == 'liso':   # panel sin casilleros: los ítems quedan apoyados encima
+            continue
         for s in slots:
             draw_slot(px, *slot_xy(s))
     if name == 'caja_ruleta':
