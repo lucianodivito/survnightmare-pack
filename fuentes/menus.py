@@ -60,7 +60,7 @@ MENUS = {
     'tienda_items': ('', [([4], DORADO), ([r * 9 + c for r in range(1, 5) for c in range(1, 8)], None),
                                 ([45, 48, 49, 50], 'suelto')]),
 }
-MENUS['kits'] = ('\ue016', [([11], None), ([13], None), ([15], None),
+MENUS['kits'] = ('\ue016', [([12], None), ([14], None),
                             ([28, 29, 30, 31, 32, 33, 34], (104, 84, 146))] + nav(45, 49))
 for n in range(1, 8):
     MENUS['ascension_%d' % n] = (chr(0xE020 + n), ability(n, False, VIOLETA, nav(49, 53)))
