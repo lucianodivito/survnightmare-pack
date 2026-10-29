@@ -51,7 +51,7 @@ def ability(count, spaced, top_border, bottom):
 
 MENUS = {
     'principal': ('', [([11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 30, 31, 32], None)] + nav(49)),
-    'proteccion': ('', [([11, 12, 13, 14, 15], None), ([29], CELESTE), ([31], CELESTE), ([33], CELESTE)]
+    'proteccion': ('', [([11, 12, 13, 14, 15], None), ([29, 30, 31, 32, 33], CELESTE)]
                    + nav(45, 47, 49, 51)),
     'encargos': ('', [([4], None), ([20], None), ([22], None), ([24], None)] + nav(49)),
     'destilador': ('', [([13], VERDE), ([29], None), ([31], None), ([33], None)] + nav(49)),
