@@ -24,6 +24,60 @@
       "chars": [
         "\ue001"
       ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_principal.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue010"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_proteccion.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue011"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_encargos.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue012"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_destilador.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue013"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_tienda.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue014"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_tienda_items.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue015"
+      ]
     }
   ]
 }
