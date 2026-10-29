@@ -39,6 +39,8 @@ float parabolicMixFactor(float level) {
 const float NIGHT_SKY = 0.6;         // cuanto queda de la luz del cielo (luna)
 const float NIGHT_AMBIENT = 0.5;    // cuanto queda de la luz ambiente minima
 const float NIGHT_GAMMA = 0.45;      // cuanto queda del efecto del brillo de las opciones
+// La vision nocturna (habilidad o pocion) con el mundo oscurecido: penumbra, no dia. Se ven formas, no colores.
+const float NIGHT_VISION_DARK = 0.35;
 
 void main() {
     float boss = lightmapInfo.BossOverlayWorldDarkeningFactor;
@@ -50,7 +52,7 @@ void main() {
     float sky_brightness = get_brightness(sky_level) * lightmapInfo.SkyFactor * mix(1.0, NIGHT_SKY, boss);
 
     // Calculate ambient color with or without night vision
-    vec3 nightVisionColor = lightmapInfo.NightVisionColor * lightmapInfo.NightVisionFactor;
+    vec3 nightVisionColor = lightmapInfo.NightVisionColor * lightmapInfo.NightVisionFactor * mix(1.0, NIGHT_VISION_DARK, boss);
     vec3 color = max(lightmapInfo.AmbientColor * mix(1.0, NIGHT_AMBIENT, boss), nightVisionColor);
 
     // Add sky light
@@ -69,7 +71,9 @@ void main() {
     // Apply brightness
     color = clamp(color, 0.0, 1.0);
     vec3 notGamma = notGamma(color);
-    color = mix(color, notGamma, lightmapInfo.BrightnessFactor * mix(1.0, NIGHT_GAMMA, boss));
+    // El brillo nunca pasa del maximo del menu (1.0): editar options.txt con "gamma:100" ya no hace de dia la noche
+    float gamma = clamp(lightmapInfo.BrightnessFactor, 0.0, 1.0);
+    color = mix(color, notGamma, gamma * mix(1.0, NIGHT_GAMMA, boss));
 
     fragColor = vec4(color, 1.0);
 }
