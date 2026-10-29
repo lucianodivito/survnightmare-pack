@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "terror:condenado"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "terror:condenado"
+      }
+    ]
+  }
+}

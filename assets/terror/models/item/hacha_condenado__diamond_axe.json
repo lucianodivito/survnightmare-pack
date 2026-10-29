@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "terror:item/hacha_condenado__diamond_axe"
+  }
+}

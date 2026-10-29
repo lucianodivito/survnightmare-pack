@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/bow",
+  "textures": {
+    "layer0": "terror:item/arco_condenado__bow_pulling_0"
+  }
+}
