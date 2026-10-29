@@ -78,6 +78,132 @@
       "chars": [
         "\ue015"
       ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_ascension_1.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue021"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_etapa_1.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue031"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_ascension_2.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue022"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_etapa_2.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue032"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_ascension_3.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue023"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_etapa_3.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue033"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_ascension_4.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue024"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_etapa_4.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue034"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_ascension_5.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue025"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_etapa_5.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue035"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_ascension_6.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue026"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_etapa_6.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue036"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_ascension_7.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue027"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "terror:gui/menu_etapa_7.png",
+      "ascent": 13,
+      "height": 222,
+      "chars": [
+        "\ue037"
+      ]
     }
   ]
 }

@@ -1,8 +1,8 @@
 """
-Genera los fondos de los menús de 6 filas: uno por menú, con casilleros solo donde hay botones, agrupados en paneles,
-una línea de sangre bajo el título y la fila de abajo (volver, cerrar...) separada. El resto es fondo oscuro.
-Salida: assets/terror/textures/gui/menu_<nombre>.png y los caracteres \\ue010... en assets/terror/font/menu.json
-(el plugin elige el fondo de cada menú con ChestMenu.darkTitle).
+Genera los fondos de los menús de 6 filas: uno por menú, con casilleros solo donde hay botones, agrupados en paneles
+con relieve (y alguna gota de sangre que chorrea de abajo). El resto es fondo oscuro.
+Salida: assets/terror/textures/gui/menu_<nombre>.png y sus caracteres en assets/terror/font/menu.json
+(el plugin elige el fondo de cada menú con ChestMenu.darkTitle). Si se mueve un botón en el plugin, hay que moverlo acá.
 Uso: python fuentes/menus.py [carpeta para vistas previas]
 """
 import json, os, random, sys
@@ -23,21 +23,46 @@ SLOT_BOTTOM = (70, 68, 75)
 PANEL = (50, 48, 54)
 PANEL_LIGHT = (78, 75, 82)
 PANEL_SHADOW = (20, 19, 22)
+OUTLINE = (16, 15, 18)
 BLOOD = (110, 16, 28)
 BLOOD_DARK = (70, 10, 18)
 
-# Cada menú: grupos de casilleros (cada grupo es un panel) y su color de borde. La última fila va aparte.
-NAV = 'nav'
+CELESTE, VERDE, DORADO, VIOLETA = (60, 120, 128), (60, 130, 84), (150, 112, 40), (104, 84, 146)
+
+
+def nav(*slots):
+    """La fila de abajo (volver, cerrar...): cada botón en su panel chico."""
+    return [([s], None) for s in slots]
+
+
+def ability(count, spaced, top_border, bottom):
+    """Ascensión: arriba el perfil, en el medio cada ícono con su barra debajo (filas 2 y 3), abajo los botones.
+    Las columnas, como AbilityMenu.columns."""
+    step = 2 if spaced and count <= 4 else 1
+    start = 4 - (count - 1) * step // 2
+    cols = [start + i * step for i in range(count)]
+    groups = [([4], top_border)]
+    if step == 1:
+        groups.append(([r * 9 + c for c in cols for r in (2, 3)], None))
+    else:
+        groups += [([2 * 9 + c, 3 * 9 + c], None) for c in cols]
+    return groups + bottom
+
+
 MENUS = {
-    'principal': [([11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 30, 31, 32], None), ([49], NAV)],
-    'proteccion': [([11, 12, 13, 14, 15], None), ([29, 31, 33], (60, 120, 128)), ([45, 47, 49, 51], NAV)],
-    'encargos': [([4], None), ([20], None), ([22], None), ([24], None), ([49], NAV)],
-    'destilador': [([13], (60, 130, 84)), ([29, 31, 33], None), ([49], NAV)],
-    'tienda': [([4], (150, 112, 40)), ([20, 21, 22, 23, 24, 31], None), ([49, 51], NAV)],
-    'tienda_items': [([4], (150, 112, 40)), ([r * 9 + c for r in range(1, 5) for c in range(1, 8)], None),
-                     ([45, 48, 49, 50], NAV)],
+    'principal': ('', [([11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 30, 31, 32], None)] + nav(49)),
+    'proteccion': ('', [([11, 12, 13, 14, 15], None), ([29], CELESTE), ([31], CELESTE), ([33], CELESTE)]
+                   + nav(45, 47, 49, 51)),
+    'encargos': ('', [([4], None), ([20], None), ([22], None), ([24], None)] + nav(49)),
+    'destilador': ('', [([13], VERDE), ([29], None), ([31], None), ([33], None)] + nav(49)),
+    'tienda': ('', [([4], DORADO), ([20, 21, 22, 23, 24, 31], None)] + nav(49, 51)),
+    # Acá la fila 4 está llena: los botones de abajo van sin panel (si no, se pisarían)
+    'tienda_items': ('', [([4], DORADO), ([r * 9 + c for r in range(1, 5) for c in range(1, 8)], None),
+                                ([45, 48, 49, 50], 'suelto')]),
 }
-FIRST_CHAR = 0xE010
+for n in range(1, 8):
+    MENUS['ascension_%d' % n] = (chr(0xE020 + n), ability(n, False, VIOLETA, nav(49, 53)))
+    MENUS['etapa_%d' % n] = (chr(0xE030 + n), ability(n, True, VIOLETA, nav(45, 49, 53)))
 
 
 def slot_xy(slot):
@@ -70,8 +95,9 @@ def draw_slot(px, x, y):
         px[x + 17, y + 17 - i] = SLOT_BOTTOM + (255,)
 
 
-def draw_panel(px, slots, border, pad=3):
-    """El panel detrás de un grupo: la unión de los casilleros agrandada, con luz arriba y sombra abajo."""
+def draw_panel(px, rnd, slots, border, pad=3):
+    """El panel detrás de un grupo: la unión de los casilleros agrandada, con luz arriba, sombra abajo y alguna gota
+    de sangre que chorrea del borde de abajo."""
     mask = set()
     for s in slots:
         x, y = slot_xy(s)
@@ -100,39 +126,23 @@ def draw_panel(px, slots, border, pad=3):
         for dx, dy in ((1, 0), (0, 1), (1, 1)):
             q = (x + dx, y + dy)
             if q not in mask and 0 <= q[0] < W and 0 <= q[1] < H:
-                px[q] = (16, 15, 18, 255)
+                px[q] = OUTLINE + (255,)
+    # Gotas: desde el borde de abajo (lejos de las esquinas), una cada tanto
+    # (no si el panel llega a la fila 4: caerían sobre los botones de abajo)
+    edge = sorted((x, y) for (x, y) in mask if (x, y + 1) not in mask
+                  and (x - 3, y) in mask and (x + 3, y) in mask and y < GY + 5 * 18 - 4)
+    for (x, y) in edge:
+        if rnd.random() < 0.045:
+            length = rnd.choice((1, 2, 2, 3, 4))
+            for i in range(1, length + 2):
+                if (x, y + i) in mask or y + i >= GY + 6 * 18:
+                    break
+                px[x, y + i] = (BLOOD if i <= length else BLOOD_DARK) + (255,)
+            if length >= 3 and rnd.random() < 0.5:   # la gota, un poco más gorda al final
+                px[x + 1, y + length] = BLOOD_DARK + (255,)
 
 
-def blood_line(px, rnd, y, x0, x1, drips=9):
-    """Una raya de sangre que se apaga en las puntas, con algunas gotas que chorrean."""
-    span = x1 - x0
-    for x in range(x0, x1):
-        t = min(x - x0, x1 - 1 - x) / (span * 0.18)
-        if t < 1 and rnd.random() > t:
-            continue
-        px[x, y] = BLOOD + (255,)
-        if rnd.random() < 0.6:
-            px[x, y + 1] = BLOOD_DARK + (255,)
-    for _ in range(drips):
-        x = rnd.randint(x0 + span // 6, x1 - span // 6)
-        length = rnd.choice((2, 2, 3, 3, 4, 5))
-        for i in range(1, length + 1):
-            px[x, y + i] = (BLOOD if i < length else BLOOD_DARK) + (255,)
-
-
-def nav_bar(px, rnd, blood=True):
-    """La fila de abajo (volver, cerrar...): una franja más oscura de lado a lado, con una raya de sangre arriba
-    (si la fila de arriba está libre: si no, la raya pisaría los casilleros)."""
-    y0, y1 = GY + 5 * 18, GY + 6 * 18
-    rect(px, 3, y0, W - 4, y1 + 1, (27, 26, 30))
-    for x in range(3, W - 4):
-        px[x, y0] = SLOT_TOP + (255,)
-        px[x, y1 + 1] = (52, 50, 56, 255)
-    if blood:
-        blood_line(px, rnd, y0 - 1, GX + 20, W - GX - 20, drips=0)
-
-
-def frame(name):
+def frame(name, groups):
     rnd = random.Random(name)
     img = Image.new('RGBA', (W, H), (0, 0, 0, 0))
     px = img.load()
@@ -152,17 +162,12 @@ def frame(name):
                 k = 10 - d
                 px[x, y] = (r - k, g - k, b - k, a)
     noise(img, rnd)
-    blood_line(px, rnd, 14, GX + 1, W - GX - 1)
-    for slots, border in MENUS[name]:
-        if border == NAV:
-            row4 = any(s // 9 == 4 for group, b in MENUS[name] if b != NAV for s in group)
-            nav_bar(px, rnd, blood=not row4)
-            for s in slots:
-                draw_slot(px, *slot_xy(s))
-        else:
-            draw_panel(px, slots, border)
-            for s in slots:
-                draw_slot(px, *slot_xy(s))
+    for slots, border in groups:
+        if border != 'suelto':
+            draw_panel(px, rnd, slots, border)
+    for slots, _ in groups:
+        for s in slots:
+            draw_slot(px, *slot_xy(s))
     # El inventario del jugador, como siempre
     for r in range(3):
         for c in range(9):
@@ -182,13 +187,13 @@ def preview(img, name, out):
 fonts = os.path.join(ROOT, 'assets', 'terror', 'font', 'menu.json')
 font = json.load(open(fonts, encoding='utf-8'))
 font['providers'] = [p for p in font['providers'] if not p.get('file', '').startswith('terror:gui/menu_')]
-for i, name in enumerate(MENUS):
-    img = frame(name)
+for name, (char, groups) in MENUS.items():
+    img = frame(name, groups)
     img.save(os.path.join(ROOT, 'assets', 'terror', 'textures', 'gui', 'menu_%s.png' % name))
     font['providers'].append({'type': 'bitmap', 'file': 'terror:gui/menu_%s.png' % name, 'ascent': 13, 'height': H,
-                              'chars': [chr(FIRST_CHAR + i)]})
-    print(name, hex(FIRST_CHAR + i))
+                              'chars': [char]})
     if len(sys.argv) > 1:
         preview(img, name, sys.argv[1])
 with open(fonts, 'w', encoding='utf-8', newline='\n') as f:
     json.dump(font, f, indent=2)
+print(len(MENUS), 'fondos')
