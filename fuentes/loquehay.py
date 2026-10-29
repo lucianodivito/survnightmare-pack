@@ -1,7 +1,7 @@
 """
 Lo que hay (jefe de La Nada): dos cosas.
 - Su skin (terror:entity/loquehay): un cuerpo negro casi puro, que en La Nada no se ve; flaco, de dedos largos. La cara
-  tampoco tiene nada: es negra y lisa.
+  es negra, sin boca: solo dos ojos, rendijas blancas con brillo rojo (es la cabeza del screamer).
 - Sus ojos (ítem terror:ojos, un plano que el plugin pone flotando a la altura de la cabeza, con brillo): dos puntos de
   luz blancos con un borde rojo. Es lo único que se ve de él en la oscuridad.
 Uso: python fuentes/loquehay.py [vista.png]
@@ -45,7 +45,14 @@ for box in ((8, 0, 24, 8), (0, 8, 32, 16), (20, 16, 36, 20), (16, 20, 40, 32), (
         for x in range(box[0], box[2]):
             mask.putpixel((x, y), 255)
 img.putalpha(mask)
-# La cara: nada. Negra y lisa como el resto; lo único que se ve de él son los ojos que flotan (terror:ojos)
+# La cara: negra, sin boca. Solo los ojos: dos rendijas blancas con un brillo rojo (los mismos que flotan en la
+# oscuridad, terror:ojos). Es la cabeza que te salta en el screamer.
+for x0 in (8, 13):
+    for dx in range(3):
+        px(x0 + dx, 11, (250, 250, 245))
+        px(x0 + dx, 10, (120, 10, 10))
+        px(x0 + dx, 12, (120, 10, 10))
+px(7 + 1, 11, (250, 250, 245))
 # Dedos largos (las puntas de las manos, un poco más claras)
 for x in range(40, 56, 2):
     px(x, 31, EDGE)
