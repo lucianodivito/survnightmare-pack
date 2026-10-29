@@ -546,5 +546,33 @@
       }
     ],
     "subtitle": "terror.subtitulo.caminante.muerte"
+  },
+  "ambiente.viento": {
+    "sounds": [
+      {
+        "name": "terror:ambiente/viento1",
+        "stream": true
+      },
+      {
+        "name": "terror:ambiente/viento2",
+        "stream": true
+      },
+      {
+        "name": "terror:ambiente/viento3",
+        "stream": true
+      }
+    ]
+  },
+  "ambiente.luna": {
+    "sounds": [
+      {
+        "name": "terror:ambiente/luna1",
+        "stream": true
+      },
+      {
+        "name": "terror:ambiente/luna2",
+        "stream": true
+      }
+    ]
   }
 }
