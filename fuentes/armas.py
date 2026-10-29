@@ -3,7 +3,7 @@ Las armas especiales con su propia textura (terror:<arma>): parten de las del ju
 y las rehacen, para que se distingan de una común a la distancia.
 - Condenado (espada, pico, hacha, pala): dibujados a mano en hierro forjado (filo claro, acero, sombra, remaches) con
   el mango de cuero envuelto en cadena. El arco: madera negra y cuerda blanca.
-- Armadura del Condenado: acero liso con volumen y el borde en un tono oscuro del mismo acero; también puesta.
+- Armadura del Condenado: acero pavonado (la de netherita, con su sombreado, en gris azulado intermedio); también puesta.
 - Ballesta del Vigía: madera quemada, metal oxidado con bordes vivos y remaches.
 - Mazo de la Luna Roja: la cabeza rojo sangre, con púas y gotas que caen.
 - Lanza del Umbral: negra violácea, con el borde violeta y una grieta de alma en el medio.
@@ -181,29 +181,19 @@ def umbral(img):
 
 
 def armadura(img):
-    """Acero liso con volumen: más claro arriba a la izquierda, más oscuro abajo a la derecha, y el borde en un tono
-    oscuro del mismo acero (no negro), como los ítems del juego. Sin líneas ni remaches en el medio."""
+    """Acero pavonado: la armadura de netherita con todo su sombreado y sus detalles, pero con el brillo estirado a un
+    gris azulado intermedio (más claro que la netherita, más oscuro y frío que el hierro). Así, puesta y en el ícono,
+    se lee como una armadura del juego y no se confunde con ninguna."""
     px = img.load()
     w, h = img.size
-    orig = {(x, y): px[x, y] for y in range(h) for x in range(w)}
-    pts = [p for p, c in orig.items() if c[3]]
-    if not pts:
-        return img
-    minx, maxx = min(p[0] for p in pts), max(p[0] for p in pts)
-    miny, maxy = min(p[1] for p in pts), max(p[1] for p in pts)
-    for (x, y) in pts:
-        l = lum(orig[(x, y)])
-        # Volumen: de 0 (arriba a la izquierda) a 1 (abajo a la derecha)
-        t = ((x - minx) / max(1, maxx - minx) + (y - miny) / max(1, maxy - miny)) / 2
-        base = 150 - 50 * t + (l - 60) * 0.18            # apenas se nota el dibujo original
-        if edge(px, w, h, x, y):
-            px[x, y] = steel(base * 0.42)                   # borde: el mismo acero, oscuro
-        elif edge(px, w, h, x, y - 1) or edge(px, w, h, x - 1, y):
-            px[x, y] = steel(base + 48)                     # brillo, adentro del borde de arriba y la izquierda
-        elif edge(px, w, h, x, y + 1) or edge(px, w, h, x + 1, y):
-            px[x, y] = steel(base - 34)                     # sombra, adentro del borde de abajo y la derecha
-        else:
-            px[x, y] = steel(base)
+    for y in range(h):
+        for x in range(w):
+            c = px[x, y]
+            if not c[3]:
+                continue
+            l = lum(c)
+            v = 40 + (l - 10) / 101 * 165                  # 10..111 de la netherita -> 40..205
+            px[x, y] = (max(0, min(255, int(v * 0.9))), max(0, min(255, int(v * 0.96))), max(0, min(255, int(v * 1.08 + 4))), c[3])
     return img
 
 
@@ -216,9 +206,9 @@ def steel(v):
 # ------------------------------------------------------------------ el Condenado, dibujado a mano (16x16)
 # Hierro forjado: K contorno, D sombra, M acero, L acero claro, W filo, R remache; el mango de cuero (H, h) con
 # eslabones de cadena (C, c).
-CON = {'K': (20, 20, 24, 255), 'D': (54, 54, 60, 255), 'M': (96, 96, 104, 255), 'L': (150, 150, 158, 255),
-       'W': (222, 222, 228, 255), 'R': (190, 190, 196, 255), 'H': (52, 40, 34, 255), 'h': (84, 66, 54, 255),
-       'C': (168, 168, 176, 255), 'c': (88, 88, 96, 255)}
+CON = {'K': (22, 24, 32, 255), 'D': (50, 55, 68, 255), 'M': (92, 99, 116, 255), 'L': (146, 155, 174, 255),
+       'W': (212, 220, 236, 255), 'R': (184, 192, 208, 255), 'H': (52, 40, 34, 255), 'h': (84, 66, 54, 255),
+       'C': (160, 168, 184, 255), 'c': (84, 90, 104, 255)}   # acero pavonado, como la armadura
 
 
 def sprite(rows):
