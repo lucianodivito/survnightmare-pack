@@ -367,6 +367,8 @@ for out, base, palette in ARMAS:
         if armor:
             model = {'parent': 'minecraft:item/generated', 'textures': {'layer0': 'minecraft:item/' + base}}
         for key, tex in list(model.get('textures', {}).items()):
+            if tex.startswith('item/'):                 # algunos modelos del juego lo escriben sin "minecraft:"
+                tex = 'minecraft:' + tex
             if not tex.startswith('minecraft:item/'):
                 continue
             tname = tex.split('/', 1)[1]
