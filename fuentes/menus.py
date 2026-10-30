@@ -50,7 +50,7 @@ def ability(count, spaced, top_border, bottom):
 
 
 MENUS = {
-    'principal': ('', [([11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 30, 31, 32], None)] + nav(49)),
+    'principal': ('', [([11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 29, 30, 31, 32, 33], None)] + nav(49)),
     'proteccion': ('', [([11, 12, 13, 14, 15], None), ([29, 30, 31, 32, 33], CELESTE)]
                    + nav(45, 47, 49, 51)),
     'encargos': ('', [([4], None), ([20], None), ([22], None), ([24], None)] + nav(49)),
@@ -72,6 +72,9 @@ for rows in range(1, 6):
 MENUS['herrero'] = (chr(0xE01A), [([4], DORADO), ([r * 9 + c for r in range(1, 4) for c in range(1, 8)], None)] + nav(49, 51))
 MENUS['recompensas'] = (chr(0xE01B), [([4], DORADO), ([r * 9 + c for r in range(1, 5) for c in range(1, 8)], None)] + nav(49))
 MENUS['clan'] = (chr(0xE01C), [([2], None), ([4], DORADO), ([6], None), ([r * 9 + c for r in range(2, 4) for c in range(1, 8)], None)] + nav(47, 49, 51, 53))
+# Bestiario: arriba tu progreso; las secciones en una fila; adentro de cada una, las criaturas en una fila
+MENUS['bestiario'] = (chr(0xE01E), [([4], DORADO), ([20, 21, 22, 23, 24], None)] + nav(49))
+MENUS['bestiario_seccion'] = (chr(0xE01F), [([4], DORADO), ([19, 20, 21, 22, 23, 24, 25], None)] + nav(45, 49))
 MENUS['clan_sin'] = (chr(0xE01D), [([4], DORADO), ([r * 9 + c for r in range(2, 4) for c in range(1, 8)], None)] + nav(47, 49))
 for n in range(1, 8):
     MENUS['ascension_%d' % n] = (chr(0xE020 + n), ability(n, False, VIOLETA, nav(49, 53)))
