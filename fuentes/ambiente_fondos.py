@@ -23,9 +23,9 @@ def wind(seed, rates, whistle):
     """Viento: un fondo grave de ruido marrón con ráfagas lentas, un silbido medio y uno agudo que van y vienen,
     cada uno con su propio ritmo (se cruzan y las ráfagas nunca caen igual)."""
     a, b, c = rates
-    gust = f"0.55+0.45*sin(2*PI*t*{a})*sin(2*PI*t*{b}+1.3)"
-    hiss = f"0.25+0.75*pow(sin(2*PI*t*{c}+0.4),2)"
-    whine = f"0.15+0.85*pow(sin(2*PI*t*{b}*0.7+2.1),4)"
+    gust = f"0.72+0.28*sin(2*PI*t*{a})*sin(2*PI*t*{b}+1.3)"
+    hiss = f"0.5+0.5*pow(sin(2*PI*t*{c}+0.4),2)"
+    whine = f"0.3+0.7*pow(sin(2*PI*t*{b}*0.7+2.1),4)"
     chans = []
     for ch in range(2):
         s = seed * 10 + ch
@@ -40,26 +40,29 @@ def wind(seed, rates, whistle):
 def moon(seed, root, beat):
     """Luna de Sangre: un zumbido grave que late despacio (dos tonos casi iguales), una quinta disonante que aparece
     y se va, retumbo de tierra y un coro hueco (ruido por un filtro muy angosto) que crece y se apaga."""
-    swell = f"0.3+0.7*pow(sin(2*PI*t*{0.045 + seed * 0.01:.3f}+{seed}),2)"
-    choir = f"0.1+0.9*pow(sin(2*PI*t*{0.06 + seed * 0.013:.3f}+{seed * 2}),4)"
+    swell = f"0.55+0.45*pow(sin(2*PI*t*{0.045 + seed * 0.01:.3f}+{seed}),2)"
+    choir = f"0.45+0.55*pow(sin(2*PI*t*{0.06 + seed * 0.013:.3f}+{seed * 2}),4)"
     chans = []
     for ch in range(2):
         s = seed * 10 + ch
         det = 0.15 * ch
         chans.append(
             f"sine=f={root}:r={RATE}:d={DURACION}[s1{ch}];sine=f={root + beat + det}:r={RATE}:d={DURACION}[s2{ch}];"
-            f"sine=f={root * 2}:r={RATE}:d={DURACION}[s3{ch}];"
+            f"sine=f={root * 2}:r={RATE}:d={DURACION}[s3{ch}];sine=f={root * 3 + det}:r={RATE}:d={DURACION}[s5{ch}];"
             f"sine=f={root * 1.41:.2f}:r={RATE}:d={DURACION},volume='{swell}':eval=frame[s4{ch}];"
             f"anoisesrc=d={DURACION}:c=brown:r={RATE}:a=0.8:s={s},lowpass=f=140,volume='{swell}':eval=frame[n{ch}];"
             f"anoisesrc=d={DURACION}:c=pink:r={RATE}:a=0.6:s={s + 5},bandpass=f={root * 8 + ch * 3}:width_type=q:w=40,"
             f"bandpass=f={root * 8 + ch * 3}:width_type=q:w=40,volume='{choir}':eval=frame[k{ch}];"
-            f"[s1{ch}][s2{ch}][s3{ch}][s4{ch}][n{ch}][k{ch}]amix=inputs=6:weights=0.30 0.30 0.12 0.10 0.9 0.9:normalize=0[c{ch}];")
+            f"anoisesrc=d={DURACION}:c=pink:r={RATE}:a=0.6:s={s + 8},bandpass=f={root * 5 + ch * 2}:width_type=q:w=30,"
+            f"bandpass=f={root * 5 + ch * 2}:width_type=q:w=30,volume='{swell}':eval=frame[q{ch}];"
+            f"[s1{ch}][s2{ch}][s3{ch}][s4{ch}][s5{ch}][n{ch}][k{ch}][q{ch}]amix=inputs=8:weights=0.30 0.30 0.22 0.12 0.10 0.7 1.6 1.3:normalize=0[c{ch}];")
     return ''.join(chans)
 
 
 def render(graph, name, gain):
     path = os.path.join(OUT, name + '.ogg')
-    tail = (f"[c0][c1]join=inputs=2:channel_layout=stereo,volume={gain},"
+    # Fuerte y parejo (como los sonidos del juego): normalizado a -14 LUFS antes de los fundidos
+    tail = (f"[c0][c1]join=inputs=2:channel_layout=stereo,volume={gain},loudnorm=I=-14:TP=-1.5:LRA=6,aresample={RATE},"
             f"afade=t=in:d={FUNDIDO}:curve=qsin,afade=t=out:st={DURACION - FUNDIDO}:d={FUNDIDO}:curve=qsin,"
             f"alimiter=limit=0.9[out]")
     subprocess.run([FFMPEG, '-y', '-loglevel', 'error', '-filter_complex', graph + tail, '-map', '[out]',
@@ -85,8 +88,8 @@ FILES = {
     'viento1': (wind(1, (0.031, 0.083, 0.11), 520), 1.6),
     'viento2': (wind(2, (0.043, 0.067, 0.09), 610), 2.4),
     'viento3': (wind(3, (0.025, 0.097, 0.13), 450), 1.6),
-    'luna1': (moon(1, 55, 0.55), 1.1),
-    'luna2': (moon(2, 49, 0.7), 1.1),
+    'luna1': (moon(1, 73.4, 0.55), 1.1),
+    'luna2': (moon(2, 65.4, 0.7), 1.1),
 }
 for name, (graph, gain) in FILES.items():
     path = render(graph, name, gain)
