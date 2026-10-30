@@ -53,27 +53,28 @@ RELIQUIAS = {
         'R': (146, 56, 52, 255), 'r': (192, 98, 90, 255), 'o': (88, 34, 32, 255),
         'W': (196, 188, 172, 255), 'w': (228, 222, 208, 255), 's': (92, 76, 58, 255),
     }),
-    # La hoz del Espantapájaros: hoja curva, oxidada, mango de madera gastado
+    # La hoz del Espantapájaros: con la forma de una azada (mango en diagonal y hoja arriba), pero la hoja oxidada
+    # se curva hacia abajo en punta, y el mango atado con cuerda. Se sostiene como herramienta (item/handheld).
     'hoz': ([
         '................',
-        '......SSSSS.....',
-        '....SSsssssS....',
-        '...Ss.....SsS...',
-        '..Ss.......Ss...',
-        '..S.........S...',
-        '..r.........s...',
-        '...r.......Sr...',
-        '..........Sr....',
-        '.........HS.....',
-        '........Hh......',
-        '.......Hh.......',
-        '......Hh........',
-        '.....Hh.........',
-        '....hh..........',
+        '....KKKKK.......',
+        '..KKsssssKK.....',
+        '.KsSSSSSSSsKFG..',
+        '.KSSrKKKKSSsHK..',
+        '.KSK.....KFsSK..',
+        '.KrK....FGKKK...',
+        '..KK...FHK......',
+        '......FGK.......',
+        '.....FbK........',
+        '....FbK.........',
+        '...FHK..........',
+        '..FGK...........',
+        '.FHK............',
+        '.KK.............',
         '................',
     ], {
-        'S': (138, 138, 140, 255), 's': (196, 196, 198, 255), 'r': (124, 76, 48, 255),
-        'H': (122, 86, 52, 255), 'h': (84, 58, 36, 255),
+        'K': (28, 24, 22, 255), 'S': (112, 104, 98, 255), 's': (176, 168, 156, 255), 'r': (132, 66, 38, 255),
+        'F': (70, 52, 26, 255), 'G': (100, 76, 36, 255), 'H': (128, 98, 46, 255), 'b': (150, 128, 84, 255),
     }),
     # El farol del poste: hierro negro, vidrio sucio, una llama que casi no da luz
     'farol': ([
@@ -166,6 +167,9 @@ RELIQUIAS = {
 }
 
 view = Image.new('RGBA', (16 * len(RELIQUIAS) + len(RELIQUIAS) - 1, 16), (60, 60, 60, 255))
+# Las que se sostienen como una herramienta (en diagonal, como la azada), no como un ítem plano
+HERRAMIENTAS = {'hoz'}
+
 for i, (name, (art, colors)) in enumerate(RELIQUIAS.items()):
     assert len(art) == 16 and all(len(r) == 16 for r in art), name
     img = Image.new('RGBA', (16, 16), (0, 0, 0, 0))
@@ -178,7 +182,8 @@ for i, (name, (art, colors)) in enumerate(RELIQUIAS.items()):
     os.makedirs(os.path.dirname(tex), exist_ok=True)
     img.save(tex)
     model = os.path.join(ROOT, 'assets', 'terror', 'models', 'item', key + '.json')
-    json.dump({'parent': 'minecraft:item/generated', 'textures': {'layer0': 'terror:item/' + key}}, open(model, 'w'), indent=2)
+    parent = 'minecraft:item/handheld' if name in HERRAMIENTAS else 'minecraft:item/generated'
+    json.dump({'parent': parent, 'textures': {'layer0': 'terror:item/' + key}}, open(model, 'w'), indent=2)
     item = os.path.join(ROOT, 'assets', 'terror', 'items', key + '.json')
     json.dump({'model': {'type': 'minecraft:model', 'model': 'terror:item/' + key}}, open(item, 'w'), indent=2)
     view.alpha_composite(img, (i * 17, 0))
