@@ -72,8 +72,8 @@ for rows in range(1, 6):
 MENUS['herrero'] = (chr(0xE01A), [([4], DORADO), ([r * 9 + c for r in range(1, 4) for c in range(1, 8)], None)] + nav(49, 51))
 MENUS['recompensas'] = (chr(0xE01B), [([4], DORADO), ([r * 9 + c for r in range(1, 5) for c in range(1, 8)], None)] + nav(49))
 MENUS['clan'] = (chr(0xE01C), [([2], None), ([4], DORADO), ([6], None), ([r * 9 + c for r in range(2, 4) for c in range(1, 8)], None)] + nav(47, 49, 51, 53))
-# Bestiario: arriba tu progreso; las secciones en una fila; adentro de cada una, las criaturas en una fila
-MENUS['bestiario'] = (chr(0xE01E), [([4], DORADO), ([20, 21, 22, 23, 24], None)] + nav(49))
+# Bestiario: arriba tu progreso; las secciones en dos filas de tres; adentro de cada una, las criaturas en una fila
+MENUS['bestiario'] = (chr(0xE01E), [([4], DORADO)] + nav(20, 22, 24, 29, 31, 33, 49))   # 6 secciones, de a 3 en dos filas
 MENUS['bestiario_seccion'] = (chr(0xE01F), [([4], DORADO), ([19, 20, 21, 22, 23, 24, 25], None)] + nav(45, 49))
 MENUS['clan_sin'] = (chr(0xE01D), [([4], DORADO), ([r * 9 + c for r in range(2, 4) for c in range(1, 8)], None)] + nav(47, 49))
 for n in range(1, 8):
