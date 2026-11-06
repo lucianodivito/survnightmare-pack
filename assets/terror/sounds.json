@@ -574,5 +574,97 @@
         "stream": true
       }
     ]
+  },
+  "sombra.susurro": {
+    "sounds": [
+      {
+        "name": "terror:sombra/susurro1"
+      },
+      {
+        "name": "terror:sombra/susurro2"
+      },
+      {
+        "name": "terror:sombra/susurro3"
+      },
+      {
+        "name": "terror:sombra/susurro4"
+      },
+      {
+        "name": "terror:sombra/voces1"
+      },
+      {
+        "name": "terror:sombra/voces2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.sombra"
+  },
+  "sombra.acecho": {
+    "sounds": [
+      {
+        "name": "terror:sombra/llamado1"
+      },
+      {
+        "name": "terror:sombra/llamado2"
+      },
+      {
+        "name": "terror:sombra/llamado3"
+      }
+    ],
+    "subtitle": "terror.subtitulo.sombra"
+  },
+  "sombra.respira": {
+    "sounds": [
+      {
+        "name": "terror:sombra/aliento1"
+      }
+    ],
+    "subtitle": "terror.subtitulo.sombra"
+  },
+  "sombra.siseo": {
+    "sounds": [
+      {
+        "name": "terror:sombra/estatica1"
+      },
+      {
+        "name": "terror:sombra/estatica2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.sombra"
+  },
+  "sombra.grito": {
+    "sounds": [
+      {
+        "name": "terror:sombra/chillido1"
+      },
+      {
+        "name": "terror:sombra/chillido2"
+      },
+      {
+        "name": "terror:sombra/chillido3"
+      }
+    ],
+    "subtitle": "terror.subtitulo.sombra"
+  },
+  "sombra.aparece": {
+    "sounds": [
+      {
+        "name": "terror:sombra/aparece1"
+      },
+      {
+        "name": "terror:sombra/aparece2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.sombra"
+  },
+  "sombra.golpe": {
+    "sounds": [
+      {
+        "name": "terror:sombra/golpe1"
+      },
+      {
+        "name": "terror:sombra/golpe2"
+      }
+    ],
+    "subtitle": "terror.subtitulo.sombra"
   }
 }

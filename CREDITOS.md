@@ -96,3 +96,22 @@ Todos de [Freesound](https://freesound.org) con licencia **CC0** (dominio públi
 | Uso | Pack | Autor | Licencia |
 |---|---|---|---|
 | Herramientas y armadura del Condenado (`item/*_condenado`, `entity/equipment/*/condenado.png`) | [Dark Iron](https://modrinth.com/resourcepack/dark-iron-tools-and-armor) 1.5 | Drift007_ | MIT |
+| `sombra/susurro1.ogg` | Whispers, 'Schizophrenic' or Ghost-like voices | belarathbone | https://freesound.org/s/423869/ |
+| `sombra/susurro2.ogg` | Whispers, 'Schizophrenic' or Ghost-like voices | belarathbone | https://freesound.org/s/423869/ |
+| `sombra/susurro3.ogg` | Whispers, 'Schizophrenic' or Ghost-like voices | belarathbone | https://freesound.org/s/423869/ |
+| `sombra/susurro4.ogg` | Whispers, 'Schizophrenic' or Ghost-like voices | belarathbone | https://freesound.org/s/423869/ |
+| `sombra/voces1.ogg` | Four_Voices_Whispering_3.wav | geoneo0 | https://freesound.org/s/193810/ |
+| `sombra/voces2.ogg` | Four_Voices_Whispering_3.wav | geoneo0 | https://freesound.org/s/193810/ |
+| `sombra/llamado1.ogg` | Calls Beyond Earth | Resaural | https://freesound.org/s/466871/ |
+| `sombra/llamado2.ogg` | Calls Beyond Earth | Resaural | https://freesound.org/s/466871/ |
+| `sombra/llamado3.ogg` | Calls Beyond Earth | Resaural | https://freesound.org/s/466871/ |
+| `sombra/aliento1.ogg` | Dragons Dying Breath | MickBoere | https://freesound.org/s/276577/ |
+| `sombra/estatica1.ogg` | Creepy static fade out into a low hiss from microphone | PantherK | https://freesound.org/s/585783/ |
+| `sombra/estatica2.ogg` | Creepy static fade out into a low hiss from microphone | PantherK | https://freesound.org/s/585783/ |
+| `sombra/chillido1.ogg` | High Quality Monster Screech | NaturesTemper | https://freesound.org/s/518297/ |
+| `sombra/chillido2.ogg` | High Quality Monster Screech | NaturesTemper | https://freesound.org/s/518297/ |
+| `sombra/chillido3.ogg` | High Quality Monster Screech | NaturesTemper | https://freesound.org/s/518297/ |
+| `sombra/aparece1.ogg` | Ghost Scare Vintage | onderwish | https://freesound.org/s/457514/ |
+| `sombra/aparece2.ogg` | Ghost Scare Vintage | onderwish | https://freesound.org/s/457514/ |
+| `sombra/golpe1.ogg` | High Quality Monster Screech | NaturesTemper | https://freesound.org/s/518297/ |
+| `sombra/golpe2.ogg` | High Quality Monster Screech | NaturesTemper | https://freesound.org/s/518297/ |
